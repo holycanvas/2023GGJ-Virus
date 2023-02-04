@@ -14,9 +14,6 @@ class CameraController extends Component
     private inputX: number = 0;
     // up and down input
     private inputY: number = 0;
-
-    
-
     start()
     {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);

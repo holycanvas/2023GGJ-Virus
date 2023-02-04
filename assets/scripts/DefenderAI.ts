@@ -31,10 +31,8 @@ export class DefenderAI extends BaseAI {
             this._time--;
         }
         if (this._time > this.chaseThreshold) {
-            const value = Vec3.subtract(DefenderAI._tempVec, Controller.instance.node.worldPosition, this.node.worldPosition).multiplyScalar(this.chaseSpeed * deltaTime);
-            
+            const value = Vec3.subtract(DefenderAI._tempVec, Controller.instance.node.worldPosition, this.node.worldPosition).normalize().multiplyScalar(this.chaseSpeed * deltaTime);
             this._rigidBody.applyImpulse(value);
-            console.log(this.node.worldPosition)
             this._time = 0;
         }
     }
