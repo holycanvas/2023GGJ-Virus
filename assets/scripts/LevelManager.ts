@@ -38,7 +38,8 @@ export class LevelManager extends Component {
 
     public springManager: TestSpring | null = null;
     public uiManager: UIManager | null = null;
-
+    
+    public affectedNum:number = 0;
     onLoad () {
         LevelManager.instance = this;
         this.springManager = this.getComponent(TestSpring);
