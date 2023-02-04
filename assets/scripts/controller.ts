@@ -94,6 +94,9 @@ export class Controller extends Component {
         if (!this.direction.equals(Vec3.ZERO)) {
             this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction.normalize(), this.speed * deltaTime));
         }
+        if (this.isOperating && !this.isOperationPull) {
+            
+        }
     }
 
     onKeyDown(event: EventKeyboard) {
@@ -137,7 +140,6 @@ export class Controller extends Component {
             this.isOperationPull = false;
         }
         this.isOperating = true;
-
     }
 
     onMouseUp(event: EventMouse) {
@@ -150,16 +152,14 @@ export class Controller extends Component {
 
     onOperation(event: ITriggerEvent) {
         if (!this.isOperating) return;
-        const direction = new Vec3();
         if (this.isOperationPull) {
+            const direction = new Vec3();
             Vec3.subtract(direction, event.selfCollider.node.worldPosition, event.otherCollider.node.worldPosition);
-        } else {
-            Vec3.subtract(direction, event.otherCollider.node.worldPosition, event.selfCollider.node.worldPosition);
+            direction.z = 0;
+            const length = Math.max(direction.length(), 1);
+            direction.normalize();
+            event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
         }
-        direction.z = 0;
-        const length = Math.max(direction.length(), 1);
-        direction.normalize();
-        event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
     }
 
     onMouseMove(event: EventMouse) {
