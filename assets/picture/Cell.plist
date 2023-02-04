@@ -146,11 +146,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{14,14}</string>
+                <string>{15,14}</string>
                 <key>spriteSourceSize</key>
-                <string>{14,14}</string>
+                <string>{15,14}</string>
                 <key>textureRect</key>
-                <string>{{0,116},{14,14}}</string>
+                <string>{{0,116},{15,14}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -168,7 +168,7 @@
             <key>size</key>
             <string>{15,130}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6115db36b9dbc613de82cea0f80c2976:98d92824ba1d65af3d5ff0e0841e5a29:75603fe25d07f0bd9fa95506900c418d$</string>
+            <string>$TexturePacker:SmartUpdate:c13ada2b7cbd46f39da2d0eaa5ffda19:8291d384c0bdbb80d714ad7b7bc2502e:75603fe25d07f0bd9fa95506900c418d$</string>
             <key>textureFileName</key>
             <string>Cell.png</string>
         </dict>
