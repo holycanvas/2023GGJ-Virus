@@ -19,25 +19,25 @@ export class Controller extends Component {
 
     onKeyDown (event: EventKeyboard) {
         if (event.keyCode === KeyCode.KEY_W) {
-            this.direction.y = 1;
+            this.direction.y += 1;
         } else if (event.keyCode === KeyCode.KEY_S) {
-            this.direction.y = -1;
+            this.direction.y -= 1;
         } else if (event.keyCode === KeyCode.KEY_A) {
-            this.direction.x = -1;
+            this.direction.x -= 1;
         } else if (event.keyCode === KeyCode.KEY_D) {
-            this.direction.x = 1;
+            this.direction.x += 1;
         }
     }
 
     onKeyUp (event: EventKeyboard) {
         if (event.keyCode === KeyCode.KEY_W) {
-            this.direction.y = 0;
+            this.direction.y -= 1;
         } else if (event.keyCode === KeyCode.KEY_S) {
-            this.direction.y = 0;
+            this.direction.y += 1;
         } else if (event.keyCode === KeyCode.KEY_A) {
-            this.direction.x = 0;
+            this.direction.x += 1;
         } else if (event.keyCode === KeyCode.KEY_D) {
-            this.direction.x = 0;
+            this.direction.x -= 1;
         }
     }
 }
