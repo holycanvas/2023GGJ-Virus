@@ -1,4 +1,6 @@
-import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, Vec3, Vec2, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, Sprite } from 'cc';
+import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation } from 'cc';
+import { Ball, BallType } from './Ball';
+import { LevelManager } from './LevelManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Controller')
@@ -57,10 +59,12 @@ export class Controller extends Component {
     @property(Animation)
     public absorbAnimation: Animation | null = null;
     private _moveState = new Vec4();
-
-    public static instance: Controller;
-    onLoad() {
+    private _ball: Ball | null = null;
+    
+    public static instance:Controller;
+    onLoad(){
         Controller.instance = this;
+        this._ball = this.getComponent(Ball);
     }
     start() {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -75,6 +79,10 @@ export class Controller extends Component {
     }
 
     update(deltaTime: number) {
+        if (this._ball.ballType === BallType.cured) {
+            LevelManager.instance.uiManager.onDead();
+            return;
+        }
         this.mainCamera.screenToWorld(this.mousePosition, this.operationDirection);
         this.operationDirection.subtract(this.node.worldPosition);
         this.operationDirection.z = 0;
