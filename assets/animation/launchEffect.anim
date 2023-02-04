@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.AnimationClip",
-    "_name": "absorb",
+    "_name": "launchEffect",
     "_objFlags": 0,
     "__editorExtras__": {
       "embeddedPlayerGroups": []
@@ -63,7 +63,10 @@
       0.4
     ],
     "_values": [
-      null,
+      {
+        "__uuid__": "3fee885a-dd19-484d-bc34-a499d3322f2a@4ff6d",
+        "__expectedType__": "cc.SpriteFrame"
+      },
       {
         "__uuid__": "3fee885a-dd19-484d-bc34-a499d3322f2a@3c48f",
         "__expectedType__": "cc.SpriteFrame"

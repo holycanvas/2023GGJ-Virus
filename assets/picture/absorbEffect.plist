@@ -4,78 +4,78 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>launchEffect(1).png</key>
+            <key>absorbEffect(1).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>textureRect</key>
-                <string>{{0,0},{78,71}}</string>
+                <string>{{0,0},{50,66}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>launchEffect(2).png</key>
+            <key>absorbEffect(2).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>textureRect</key>
-                <string>{{78,0},{78,71}}</string>
+                <string>{{0,66},{50,66}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>launchEffect(3).png</key>
+            <key>absorbEffect(3).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>textureRect</key>
-                <string>{{156,0},{78,71}}</string>
+                <string>{{0,132},{50,66}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>launchEffect(4).png</key>
+            <key>absorbEffect(4).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>textureRect</key>
-                <string>{{234,0},{78,71}}</string>
+                <string>{{0,198},{50,66}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>launchEffect(5).png</key>
+            <key>absorbEffect(5).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{50,66}</string>
                 <key>textureRect</key>
-                <string>{{312,0},{78,71}}</string>
+                <string>{{0,264},{50,66}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -89,13 +89,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>launchEffect.png</string>
+            <string>absorbEffect.png</string>
             <key>size</key>
-            <string>{390,71}</string>
+            <string>{50,330}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6177d0925de857222fb2604bbe727142:adaf9318e45288540712444591913476:d3107b795b452fcf34833f8c764f9d47$</string>
+            <string>$TexturePacker:SmartUpdate:e023302e40d283d35e6f5bcad2a9ef22:f0cc5ae787828661d7c697cb58f4ba28:4ae10bd80bca44176c6708fccc1d3d18$</string>
             <key>textureFileName</key>
-            <string>launchEffect.png</string>
+            <string>absorbEffect.png</string>
         </dict>
     </dict>
 </plist>
