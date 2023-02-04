@@ -58,6 +58,11 @@ export class Controller extends Component {
     public launchAnimation: Animation | null = null;
     @property(Animation)
     public absorbAnimation: Animation | null = null;
+
+    @property(CCFloat)
+    public pushStrength = 5;
+    @property(CCFloat)
+    public pushLength = 5;
     private _moveState = new Vec4();
     private _ball: Ball | null = null;
     
@@ -97,11 +102,11 @@ export class Controller extends Component {
         if (this.isOperating && !this.isOperationPull) {
             const ray = new geometry.Ray(this.node.worldPosition.x, this.node.worldPosition.y, this.node.worldPosition.z,
                 this.operationDirection.x, this.operationDirection.y, this.operationDirection.z);
-            physics.PhysicsSystem.instance.raycast(ray, 1 << 0, 10);
+            physics.PhysicsSystem.instance.raycast(ray, 1 << 0, this.pushLength);
             const result = physics.PhysicsSystem.instance.raycastResults;
             for (let i = 0; i < result.length; i++) {
                 const target = result[i];
-                target.collider.getComponent(RigidBody).applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, 10));
+                target.collider.getComponent(RigidBody).applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
             }
         }
     }
