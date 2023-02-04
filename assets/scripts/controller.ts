@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, Vec3, Vec2, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent } from 'cc';
+import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, Vec3, Vec2, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Controller')
@@ -18,6 +18,9 @@ export class Controller extends Component {
     @property(Node)
     public indicator: Node | null = null;
     public operationSpeed = .5;
+    public isOperating = false;
+
+    private _moveState = new Vec4();
     
     public static instance:Controller;
     onLoad(){
@@ -41,35 +44,45 @@ export class Controller extends Component {
         this.operationDirection.z = 0;
         this.operationDirection.normalize();
         this.indicator.eulerAngles = new Vec3(this.indicator.eulerAngles.z, Math.atan2(this.operationDirection.y, this.operationDirection.x) * (180 / Math.PI),this.indicator.eulerAngles.z);
-        this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), Vec3.normalize(new Vec3(), this.direction), this.speed * deltaTime));
+        this.direction.y = this._moveState.x + this._moveState.y;
+        this.direction.x = this._moveState.z + this._moveState.w;
+        this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction.normalize(), this.speed * deltaTime));
     }
 
     onKeyDown (event: EventKeyboard) {
         if (event.keyCode === KeyCode.KEY_W) {
-            this.direction.y += 1;
+            this._moveState.x = 1;
         } else if (event.keyCode === KeyCode.KEY_S) {
-            this.direction.y -= 1;
+            this._moveState.y = -1;
         } else if (event.keyCode === KeyCode.KEY_A) {
-            this.direction.x -= 1;
+            this._moveState.z = -1;
         } else if (event.keyCode === KeyCode.KEY_D) {
-            this.direction.x += 1;
+            this._moveState.w = 1;
+        } else if (event.keyCode === KeyCode.KEY_Q) {
+            this.isOperating = true;
+            this.isOperationPull = true;
+        } else if (event.keyCode === KeyCode.KEY_E) {
+            this.isOperating = true;
+            this.isOperationPull = false;
         }
     }
 
     onKeyUp (event: EventKeyboard) {
         if (event.keyCode === KeyCode.KEY_W) {
-            this.direction.y -= 1;
+            this._moveState.x = 0;
         } else if (event.keyCode === KeyCode.KEY_S) {
-            this.direction.y += 1;
+            this._moveState.y = 0;
         } else if (event.keyCode === KeyCode.KEY_A) {
-            this.direction.x += 1;
+            this._moveState.z = 0;
         } else if (event.keyCode === KeyCode.KEY_D) {
-            this.direction.x -= 1;
+            this._moveState.w = 0;
+        } else if (event.keyCode === KeyCode.KEY_Q || event.keyCode === KeyCode.KEY_E) {
+            this.isOperating = false;
         }
     }
 
     onMouseDown (event: EventMouse) {
-        this.collider.enabled = true;
+        this.isOperating = true;
         if (event.getButton() === EventMouse.BUTTON_LEFT) {
             this.isOperationPull = true;
         } else if (event.getButton() === EventMouse.BUTTON_RIGHT) {
@@ -78,10 +91,11 @@ export class Controller extends Component {
     }
 
     onMouseUp (event: EventMouse) {
-        this.collider.enabled = false;
+        this.isOperating = false;
     }
 
     onOperation (event: ITriggerEvent) {
+        if (!this.isOperating) return;
         const direction = new Vec3();
         if (this.isOperationPull) {
             Vec3.subtract(direction, event.selfCollider.node.worldPosition, event.otherCollider.node.worldPosition);
