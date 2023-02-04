@@ -1,4 +1,5 @@
-import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics, ParticleSystem, Prefab, instantiate } from 'cc';
+import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics } from 'cc';
+import { AudioController } from './AudioController';
 import { Ball, BallType } from './Ball';
 import { LevelManager } from './LevelManager';
 const { ccclass, property } = _decorator;
@@ -115,6 +116,7 @@ export class Controller extends Component {
                     target.collider.getComponent(RigidBody).applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
                 }
             }
+            AudioController.instance.playShoot();
             this._accumulateTime = 0;
             const node = instantiate(this.particleSystem);
                 this.node.addChild(node);
@@ -181,6 +183,7 @@ export class Controller extends Component {
             const length = Math.max(direction.length(), 1);
             direction.normalize();
             event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
+            AudioController.instance.playAbsorb();
         }
     }
 
