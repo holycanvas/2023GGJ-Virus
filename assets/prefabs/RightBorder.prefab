@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "NormalCell",
+    "_name": "RightBorder",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "NormalCell",
+    "_name": "RightBorder",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -25,48 +25,42 @@
       },
       {
         "__id__": 5
-      },
-      {
-        "__id__": 7
-      },
-      {
-        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 11
+      "__id__": 7
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -1.708,
+      "x": 42,
       "y": 0,
       "z": 0
     },
     "_lrot": {
       "__type__": "cc.Quat",
-      "x": 0.7071067811865475,
+      "x": 0,
       "y": 0,
-      "z": 0,
+      "z": 0.7071067811865475,
       "w": 0.7071067811865476
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 0.01,
+      "x": 10,
+      "y": 1,
       "z": 1
     },
     "_layer": 1073741824,
     "_euler": {
       "__type__": "cc.Vec3",
-      "x": 90,
+      "x": 0,
       "y": 0,
-      "z": 0
+      "z": 90
     },
     "_id": ""
   },
   {
     "__type__": "cc.MeshRenderer",
-    "_name": "Quad<ModelComponent>",
+    "_name": "Plane<ModelComponent>",
     "_objFlags": 0,
     "node": {
       "__id__": 1
@@ -86,7 +80,7 @@
       "__id__": 4
     },
     "_mesh": {
-      "__uuid__": "1263d74c-8167-4928-91a6-4e2672411f47@8abdc",
+      "__uuid__": "1263d74c-8167-4928-91a6-4e2672411f47@2e76e",
       "__expectedType__": "cc.Mesh"
     },
     "_shadowCastingMode": 0,
@@ -98,7 +92,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "cbTEnIPzJLtIdtqn7SgGcA"
+    "fileId": "3eMCVXyi5FAY5GyXRDNYPS"
   },
   {
     "__type__": "cc.ModelLightmapSettings",
@@ -117,7 +111,7 @@
     "_lightmapSize": 64
   },
   {
-    "__type__": "cc.SphereCollider",
+    "__type__": "cc.PlaneCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -138,66 +132,18 @@
       "y": 0,
       "z": 0
     },
-    "_radius": 0.5,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "7bftqQabRHP6lyLNpbVGt6"
-  },
-  {
-    "__type__": "cc.RigidBody",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 8
-    },
-    "_group": 1,
-    "_type": 1,
-    "_mass": 0.2,
-    "_allowSleep": true,
-    "_linearDamping": 0.5,
-    "_angularDamping": 0.1,
-    "_useGravity": false,
-    "_linearFactor": {
+    "_normal": {
       "__type__": "cc.Vec3",
-      "x": 1,
+      "x": 0,
       "y": 1,
       "z": 0
     },
-    "_angularFactor": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 0
-    },
+    "_constant": 0,
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "19tA/CQxJNGLfFPB1x9xpN"
-  },
-  {
-    "__type__": "8cc5bzcrd9HKbXdcLYK+Y2y",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 10
-    },
-    "ballType": 0,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "69TBWj2phPCK5zWMJJ9H6u"
+    "fileId": "d5KlaYtmlN8pacGrjhfjjw"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -207,6 +153,6 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "0cULOtnZJBlbCKD7g1r75o"
+    "fileId": "627vv6sGVCpI8GtleSu5Gs"
   }
 ]

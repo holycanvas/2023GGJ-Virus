@@ -8,6 +8,7 @@ export class BaseAI extends Ball {
 
     start() {
         super.start();
+        this.move();
     }
     move() {
         this._rigidBody.setLinearVelocity(this._speed);
