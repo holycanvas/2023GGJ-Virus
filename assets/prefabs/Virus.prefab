@@ -694,6 +694,8 @@
     "absorbAnimation": {
       "__id__": 22
     },
+    "pushStrength": 5,
+    "pushLength": 5,
     "_id": ""
   },
   {
@@ -713,6 +715,10 @@
     },
     "animation": {
       "__id__": 36
+    },
+    "smog": {
+      "__uuid__": "24cd13b0-9d87-4143-8e00-0281ed709f31",
+      "__expectedType__": "cc.Prefab"
     },
     "_ballType": 3,
     "_id": ""

@@ -192,6 +192,10 @@
     "__prefab": {
       "__id__": 10
     },
+    "smog": {
+      "__uuid__": "24cd13b0-9d87-4143-8e00-0281ed709f31",
+      "__expectedType__": "cc.Prefab"
+    },
     "_ballType": 2,
     "searchRange": 100,
     "chaseThreshold": 100,
