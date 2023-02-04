@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics } from 'cc';
+import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics, Prefab, instantiate } from 'cc';
 import { AudioController } from './AudioController';
 import { Ball, BallType } from './Ball';
 import { LevelManager } from './LevelManager';
