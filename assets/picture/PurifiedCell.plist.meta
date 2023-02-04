@@ -2,17 +2,17 @@
   "ver": "1.0.7",
   "importer": "sprite-atlas",
   "imported": true,
-  "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531",
+  "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312",
   "files": [
     ".json"
   ],
   "subMetas": {
-    "e9e52": {
+    "3960d": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@e9e52",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@3960d",
       "displayName": "",
-      "id": "e9e52",
-      "name": "InfectedCelll_01",
+      "id": "3960d",
+      "name": "PurifiedCell_01",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -43,8 +43,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -53,12 +53,12 @@
       ],
       "subMetas": {}
     },
-    "fc01a": {
+    "b1028": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@fc01a",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@b1028",
       "displayName": "",
-      "id": "fc01a",
-      "name": "InfectedCelll_010",
+      "id": "b1028",
+      "name": "PurifiedCell_010",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -89,8 +89,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -99,12 +99,12 @@
       ],
       "subMetas": {}
     },
-    "d630d": {
+    "0d78e": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@d630d",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@0d78e",
       "displayName": "",
-      "id": "d630d",
-      "name": "InfectedCelll_02",
+      "id": "0d78e",
+      "name": "PurifiedCell_02",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -135,8 +135,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -145,12 +145,12 @@
       ],
       "subMetas": {}
     },
-    "e9d98": {
+    "be238": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@e9d98",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@be238",
       "displayName": "",
-      "id": "e9d98",
-      "name": "InfectedCelll_03",
+      "id": "be238",
+      "name": "PurifiedCell_03",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -181,8 +181,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -191,12 +191,12 @@
       ],
       "subMetas": {}
     },
-    "7728e": {
+    "9d833": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@7728e",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@9d833",
       "displayName": "",
-      "id": "7728e",
-      "name": "InfectedCelll_04",
+      "id": "9d833",
+      "name": "PurifiedCell_04",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -227,8 +227,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -237,12 +237,12 @@
       ],
       "subMetas": {}
     },
-    "ec003": {
+    "01838": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@ec003",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@01838",
       "displayName": "",
-      "id": "ec003",
-      "name": "InfectedCelll_05",
+      "id": "01838",
+      "name": "PurifiedCell_05",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -273,8 +273,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -283,12 +283,12 @@
       ],
       "subMetas": {}
     },
-    "0fd71": {
+    "a8392": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@0fd71",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@a8392",
       "displayName": "",
-      "id": "0fd71",
-      "name": "InfectedCelll_06",
+      "id": "a8392",
+      "name": "PurifiedCell_06",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -319,8 +319,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -329,12 +329,12 @@
       ],
       "subMetas": {}
     },
-    "190c1": {
+    "d269e": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@190c1",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@d269e",
       "displayName": "",
-      "id": "190c1",
-      "name": "InfectedCelll_07",
+      "id": "d269e",
+      "name": "PurifiedCell_07",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -365,8 +365,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -375,12 +375,12 @@
       ],
       "subMetas": {}
     },
-    "c147b": {
+    "a2ad6": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@c147b",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@a2ad6",
       "displayName": "",
-      "id": "c147b",
-      "name": "InfectedCelll_08",
+      "id": "a2ad6",
+      "name": "PurifiedCell_08",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -411,8 +411,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -421,12 +421,12 @@
       ],
       "subMetas": {}
     },
-    "4131d": {
+    "179b1": {
       "importer": "sprite-frame",
-      "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531@4131d",
+      "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312@179b1",
       "displayName": "",
-      "id": "4131d",
-      "name": "InfectedCelll_09",
+      "id": "179b1",
+      "name": "PurifiedCell_09",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
@@ -457,8 +457,8 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a",
-        "atlasUuid": "6df46771-8ffb-4c1f-bdc4-26baace92531"
+        "imageUuidOrDatabaseUri": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a",
+        "atlasUuid": "73055c5b-4d47-4e3d-b163-443ae81a2312"
       },
       "ver": "1.0.11",
       "imported": true,
@@ -469,9 +469,9 @@
     }
   },
   "userData": {
-    "atlasTextureName": "InfectedCell.png",
+    "atlasTextureName": "PurifiedCell.png",
     "format": 3,
-    "uuid": "6df46771-8ffb-4c1f-bdc4-26baace92531",
-    "textureUuid": "b4226e0a-477e-4cd0-8107-2b15cc5814b1@6c48a"
+    "uuid": "73055c5b-4d47-4e3d-b163-443ae81a2312",
+    "textureUuid": "05173ea0-9a53-4bc7-b173-ed2440c9c385@6c48a"
   }
 }

@@ -180,6 +180,14 @@
       {
         "__uuid__": "af212619-0fc1-4a4f-8864-7eee73df5d80",
         "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "27bc2c37-fe4f-495a-8295-81239a6a0d88",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "39394489-db4d-4f7e-90bc-343f43911216",
+        "__expectedType__": "cc.AnimationClip"
       }
     ],
     "_defaultClip": {

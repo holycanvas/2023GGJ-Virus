@@ -1,4 +1,5 @@
 import { _decorator, Component, Node, director, Label } from 'cc';
+import { Ball } from './Ball';
 const { ccclass, property } = _decorator;
 
 @ccclass('UIManager')
@@ -11,7 +12,7 @@ export class UIManager extends Component {
     public score = 0;
 
     start() {
-        
+
     }
 
     update(deltaTime: number) {
@@ -20,11 +21,12 @@ export class UIManager extends Component {
         }
     }
 
-    onRestart () {
+    onRestart() {
+        Ball.balls = [];
         director.loadScene('MainScene');
     }
 
-    onDead () {
+    onDead() {
         this.center.active = true;
     }
 }

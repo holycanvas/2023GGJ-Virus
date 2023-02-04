@@ -8,12 +8,7 @@ export enum BallType {
     virus
 }
 
-const BullTypeToAnimation: Record<BallType, string> = {
-    "0": "cell",
-    "1": "curedCell",
-    "2": "defender",
-    "3": "virus"
-}
+
 @ccclass('Ball')
 @requireComponent(RigidBody)
 @requireComponent(Collider)
@@ -24,12 +19,20 @@ export class Ball extends Component {
     public animation?: Animation;
     @property
     _ballType: BallType = BallType.normal;
-    @property({type:Enum(BallType)})
+    @property({ type: Enum(BallType) })
     set ballType(value: BallType) {
         if (this._ballType !== value) {
             this._ballType = value;
-            if (this.animation?.clips.some(item=>item.name === BullTypeToAnimation[value])) {
-                this.animation.play(BullTypeToAnimation[value]);
+            if (value === BallType.virus) {
+                this.animation?.play('infectingCell');
+                this.animation?.once(Animation.EventType.FINISHED, () => {
+                    this.animation?.play('infectedCell');
+                })
+            } else if (value === BallType.cured) {
+                this.animation?.play('swallower');
+                this.animation?.once(Animation.EventType.FINISHED, () => {
+                    this.animation?.play('curedCell');
+                })
             }
         }
     };

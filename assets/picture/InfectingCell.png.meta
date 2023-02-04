@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "b0a203e0-30ff-4de7-9964-2eed35d29153",
+  "uuid": "64ccc520-3c33-4550-98c2-23299a6e11c6",
   "files": [
     ".json",
     ".png"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "b0a203e0-30ff-4de7-9964-2eed35d29153@6c48a",
-      "displayName": "absorbEffect",
+      "uuid": "64ccc520-3c33-4550-98c2-23299a6e11c6@6c48a",
+      "displayName": "InfectingCell",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "b0a203e0-30ff-4de7-9964-2eed35d29153",
+        "imageUuidOrDatabaseUri": "64ccc520-3c33-4550-98c2-23299a6e11c6",
         "visible": true
       },
       "ver": "1.0.22",
@@ -37,6 +37,6 @@
     "type": "texture",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "b0a203e0-30ff-4de7-9964-2eed35d29153@6c48a"
+    "redirect": "64ccc520-3c33-4550-98c2-23299a6e11c6@6c48a"
   }
 }
