@@ -159,10 +159,10 @@
     },
     "_lrot": {
       "__type__": "cc.Quat",
-      "x": 0.5000000000000001,
-      "y": -0.4999999999999999,
-      "z": -0.5,
-      "w": -0.5
+      "x": 0.5,
+      "y": -0.5,
+      "z": 0.4999999999999999,
+      "w": 0.5000000000000001
     },
     "_lscale": {
       "__type__": "cc.Vec3",
@@ -173,8 +173,8 @@
     "_layer": 1073741824,
     "_euler": {
       "__type__": "cc.Vec3",
-      "x": 270,
-      "y": 90,
+      "x": 90,
+      "y": -90,
       "z": 0
     },
     "_id": ""
@@ -372,7 +372,7 @@
     "__prefab": {
       "__id__": 15
     },
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_clips": [
       {
         "__uuid__": "76213049-b09c-4cf7-8cf3-fffaf97e95a8",
@@ -567,10 +567,7 @@
       "b": 255,
       "a": 255
     },
-    "_spriteFrame": {
-      "__uuid__": "3fee885a-dd19-484d-bc34-a499d3322f2a@4ff6d",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_fillType": 0,
     "_sizeMode": 0,
@@ -690,6 +687,12 @@
     "operationTheta": 60,
     "indicator": {
       "__id__": 2
+    },
+    "launchAnimation": {
+      "__id__": 14
+    },
+    "absorbAnimation": {
+      "__id__": 22
     },
     "_id": ""
   },
