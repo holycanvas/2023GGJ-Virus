@@ -146,6 +146,9 @@
     "__prefab": {
       "__id__": 7
     },
+    "animation": {
+      "__id__": 8
+    },
     "_ballType": 0,
     "_id": ""
   },
@@ -172,6 +175,10 @@
       },
       {
         "__uuid__": "39f28ef5-8890-458b-b393-dd965fd92965",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "af212619-0fc1-4a4f-8864-7eee73df5d80",
         "__expectedType__": "cc.AnimationClip"
       }
     ],
