@@ -591,7 +591,7 @@
       "__uuid__": "f2122034-f180-4360-a857-34c11ab31a8f",
       "__expectedType__": "cc.Prefab"
     },
-    "normalCellNum": 500,
+    "normalCellNum": 1000,
     "normalCellRange": {
       "__type__": "cc.Vec2",
       "x": 100,
@@ -601,7 +601,7 @@
       "__uuid__": "da5f5a51-c1fa-4cff-8c14-9a5e881d8016",
       "__expectedType__": "cc.Prefab"
     },
-    "defenderNum": 10,
+    "defenderNum": 30,
     "defenderRange": {
       "__type__": "cc.Vec2",
       "x": 100,
