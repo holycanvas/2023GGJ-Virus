@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation } from 'cc';
+import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics } from 'cc';
 import { Ball, BallType } from './Ball';
 import { LevelManager } from './LevelManager';
 const { ccclass, property } = _decorator;
@@ -74,7 +74,7 @@ export class Controller extends Component {
         input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
         this.rigidBody = this.getComponent(RigidBody);
         this.mainCamera = find('Main Camera').getComponent(Camera);
-        this.collider = this.indicator.getComponentInChildren(Collider);
+        this.collider = this.indicator.getComponentInChildren(ConeCollider);
         this.collider.on('onTriggerStay', this.onOperation, this);
     }
 
@@ -95,7 +95,14 @@ export class Controller extends Component {
             this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction.normalize(), this.speed * deltaTime));
         }
         if (this.isOperating && !this.isOperationPull) {
-            
+            const ray = new geometry.Ray(this.node.worldPosition.x, this.node.worldPosition.y, this.node.worldPosition.z,
+                this.operationDirection.x, this.operationDirection.y, this.operationDirection.z);
+            physics.PhysicsSystem.instance.raycast(ray, 1 << 0, 10);
+            const result = physics.PhysicsSystem.instance.raycastResults;
+            for (let i = 0; i < result.length; i++) {
+                const target = result[i];
+                target.collider.getComponent(RigidBody).applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, 10));
+            }
         }
     }
 
