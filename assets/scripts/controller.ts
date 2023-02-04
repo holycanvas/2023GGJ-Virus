@@ -2,7 +2,7 @@ import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, Vec3
 const { ccclass, property } = _decorator;
 
 @ccclass('Controller')
-export class controller extends Component {
+export class Controller extends Component {
     private direction = new Vec3();
     private speed = 3;
     private rigidBody: RigidBody | null = null;
@@ -13,7 +13,7 @@ export class controller extends Component {
     }
 
     update(deltaTime: number) {
-        this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction, this.speed * deltaTime));
+        this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), Vec3.normalize(new Vec3(), this.direction), this.speed * deltaTime));
         //this.node.position = Vec3.scaleAndAdd(new Vec3, this.node.position, this.direction, this.speed * deltaTime);
     }
 
