@@ -21,14 +21,14 @@ export class Ball extends Component {
     static balls: Ball[] = [];
     protected _speed: Vec3 = new Vec3();
     @property(Animation)
-    public animation: Animation;
+    public animation?: Animation;
     @property
     _ballType: BallType = BallType.normal;
     @property({type:Enum(BallType)})
     set ballType(value: BallType) {
         if (this._ballType !== value) {
             this._ballType = value;
-            if (this.animation.clips.some(item=>item.name === BullTypeToAnimation[value])) {
+            if (this.animation?.clips.some(item=>item.name === BullTypeToAnimation[value])) {
                 this.animation.play(BullTypeToAnimation[value]);
             }
         }
@@ -54,7 +54,6 @@ export class Ball extends Component {
         }
         if (this.ballType === BallType.virus && otherBall.ballType === BallType.normal) {
             otherBall.ballType = BallType.virus;
-            otherBall.animation.play()
             const springs = LevelManager.instance.springManager.springs;
             const length = springs.length;
             springs.length += 2;
