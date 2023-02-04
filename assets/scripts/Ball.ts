@@ -1,4 +1,5 @@
-import { _decorator, Component, RigidBody, Enum,Vec3, math, Collider, ICollisionEvent } from 'cc';
+import { _decorator, Component, RigidBody, Enum,Vec3, math, Collider, ICollisionEvent, js } from 'cc';
+import { LevelManager } from './LevelManager';
 const { ccclass, property, requireComponent,type } = _decorator;
 export enum BallType {
     normal,
@@ -32,8 +33,23 @@ export class Ball extends Component {
         }
         if(this.ballType === BallType.virus && otherBall.ballType === BallType.normal) {
             otherBall.ballType = BallType.virus;
+            const springs = LevelManager.instance.springManager.springs;
+            const length = springs.length;
+            springs.length += 2;
+            springs[length] = event.otherCollider.getComponent(RigidBody);
+            springs[length + 1] = event.selfCollider.getComponent(RigidBody);
+            
         } else if(this.ballType === BallType.defender && otherBall.ballType === BallType.virus){
             otherBall.ballType = BallType.cured;
+            const springs = LevelManager.instance.springManager.springs;
+            for (let i = springs.length - 1; i >= 0; i-= 2) {
+                const rigidBodyA = springs[i];
+                const rigidBodyB = springs[i - 1];
+                if (rigidBodyA.node === otherBall.node || rigidBodyB.node === otherBall.node) {
+                    js.array.fastRemoveAt(springs, i);
+                    js.array.fastRemoveAt(springs, i - 1);
+                }
+            }
         }
 
     }
