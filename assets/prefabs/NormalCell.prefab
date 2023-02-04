@@ -149,6 +149,10 @@
     "animation": {
       "__id__": 8
     },
+    "smog": {
+      "__uuid__": "24cd13b0-9d87-4143-8e00-0281ed709f31",
+      "__expectedType__": "cc.Prefab"
+    },
     "_ballType": 0,
     "_id": ""
   },

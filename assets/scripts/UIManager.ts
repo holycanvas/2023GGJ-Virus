@@ -11,14 +11,12 @@ export class UIManager extends Component {
     public center: Node | null = null;
     public score = 0;
 
-    private total: number;
-    public currentNum: number = 0;
     start() {
-        this.total = LevelManager.instance.normalCellNum;
+        
     }
 
     update(deltaTime: number) {
-        this.score = this.currentNum/this.total;
+        this.score = LevelManager.instance.affectedNum*100/LevelManager.instance.normalCellNum;
         for (let i = 0; i < this.scores.length; i++) {
             this.scores[i].string = this.score.toString();
         }

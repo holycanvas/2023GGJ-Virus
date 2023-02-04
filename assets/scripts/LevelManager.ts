@@ -38,18 +38,19 @@ export class LevelManager extends Component {
 
     public springManager: TestSpring | null = null;
     public uiManager: UIManager | null = null;
-    
+    public normalCellContainer;
     public affectedNum:number = 0;
     onLoad () {
         LevelManager.instance = this;
+        this.normalCellContainer = find('NormalCellContainer');
         this.springManager = this.getComponent(TestSpring);
         this.uiManager = find('Canvas').getComponent(UIManager);
     }
     start() {
-        const normalCellContainer = find('NormalCellContainer');
+        
         for (let i = 0; i < this.normalCellNum; i++) {
             const node = instantiate(this.normalCell);
-            normalCellContainer.addChild(node);
+            this.normalCellContainer.addChild(node);
             node.position = new Vec3(Math.random() * this.normalCellRange.x - this.normalCellRange.x / 2,
                 Math.random() * this.normalCellRange.y - this.normalCellRange.y / 2, 0);
         }
