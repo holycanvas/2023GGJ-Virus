@@ -6,6 +6,10 @@ export class Controller extends Component {
     private direction = new Vec3();
     private speed = 3;
     private rigidBody: RigidBody | null = null;
+    public static instance:Controller;
+    onLoad(){
+        Controller.instance = this;
+    }
     start() {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
