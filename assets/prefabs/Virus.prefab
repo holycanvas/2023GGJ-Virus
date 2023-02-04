@@ -700,6 +700,8 @@
       "__uuid__": "059c6ff1-090b-43fa-8a4c-465be46c6cee",
       "__expectedType__": "cc.Prefab"
     },
+    "pushStrength": 5,
+    "pushLength": 5,
     "_id": ""
   },
   {
@@ -719,6 +721,10 @@
     },
     "animation": {
       "__id__": 36
+    },
+    "smog": {
+      "__uuid__": "24cd13b0-9d87-4143-8e00-0281ed709f31",
+      "__expectedType__": "cc.Prefab"
     },
     "_ballType": 3,
     "_id": ""

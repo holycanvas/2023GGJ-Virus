@@ -149,6 +149,10 @@
     "animation": {
       "__id__": 8
     },
+    "smog": {
+      "__uuid__": "24cd13b0-9d87-4143-8e00-0281ed709f31",
+      "__expectedType__": "cc.Prefab"
+    },
     "_ballType": 0,
     "_id": ""
   },
@@ -179,6 +183,14 @@
       },
       {
         "__uuid__": "af212619-0fc1-4a4f-8864-7eee73df5d80",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "27bc2c37-fe4f-495a-8295-81239a6a0d88",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "39394489-db4d-4f7e-90bc-343f43911216",
         "__expectedType__": "cc.AnimationClip"
       }
     ],

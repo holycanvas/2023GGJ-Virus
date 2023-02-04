@@ -21,9 +21,9 @@
         "offsetY": 0,
         "trimX": 0,
         "trimY": 0,
-        "width": 50,
+        "width": 71,
         "height": 66,
-        "rawWidth": 50,
+        "rawWidth": 71,
         "rawHeight": 66,
         "borderTop": 0,
         "borderBottom": 0,
@@ -43,7 +43,7 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "41c78e0c-fb2d-4fdb-83e2-f9ce17a2bdbf@6c48a",
+        "imageUuidOrDatabaseUri": "b0a203e0-30ff-4de7-9964-2eed35d29153@6c48a",
         "atlasUuid": "3fee885a-dd19-484d-bc34-a499d3322f2a"
       },
       "ver": "1.0.11",
@@ -65,11 +65,11 @@
         "rotated": false,
         "offsetX": 0,
         "offsetY": 0,
-        "trimX": 0,
-        "trimY": 66,
-        "width": 50,
+        "trimX": 71,
+        "trimY": 0,
+        "width": 71,
         "height": 66,
-        "rawWidth": 50,
+        "rawWidth": 71,
         "rawHeight": 66,
         "borderTop": 0,
         "borderBottom": 0,
@@ -89,7 +89,7 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "41c78e0c-fb2d-4fdb-83e2-f9ce17a2bdbf@6c48a",
+        "imageUuidOrDatabaseUri": "b0a203e0-30ff-4de7-9964-2eed35d29153@6c48a",
         "atlasUuid": "3fee885a-dd19-484d-bc34-a499d3322f2a"
       },
       "ver": "1.0.11",
@@ -111,11 +111,11 @@
         "rotated": false,
         "offsetX": 0,
         "offsetY": 0,
-        "trimX": 0,
-        "trimY": 132,
-        "width": 50,
+        "trimX": 142,
+        "trimY": 0,
+        "width": 71,
         "height": 66,
-        "rawWidth": 50,
+        "rawWidth": 71,
         "rawHeight": 66,
         "borderTop": 0,
         "borderBottom": 0,
@@ -135,7 +135,7 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "41c78e0c-fb2d-4fdb-83e2-f9ce17a2bdbf@6c48a",
+        "imageUuidOrDatabaseUri": "b0a203e0-30ff-4de7-9964-2eed35d29153@6c48a",
         "atlasUuid": "3fee885a-dd19-484d-bc34-a499d3322f2a"
       },
       "ver": "1.0.11",
@@ -157,11 +157,11 @@
         "rotated": false,
         "offsetX": 0,
         "offsetY": 0,
-        "trimX": 0,
-        "trimY": 198,
-        "width": 50,
+        "trimX": 213,
+        "trimY": 0,
+        "width": 71,
         "height": 66,
-        "rawWidth": 50,
+        "rawWidth": 71,
         "rawHeight": 66,
         "borderTop": 0,
         "borderBottom": 0,
@@ -181,7 +181,7 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "41c78e0c-fb2d-4fdb-83e2-f9ce17a2bdbf@6c48a",
+        "imageUuidOrDatabaseUri": "b0a203e0-30ff-4de7-9964-2eed35d29153@6c48a",
         "atlasUuid": "3fee885a-dd19-484d-bc34-a499d3322f2a"
       },
       "ver": "1.0.11",
@@ -203,11 +203,11 @@
         "rotated": false,
         "offsetX": 0,
         "offsetY": 0,
-        "trimX": 0,
-        "trimY": 264,
-        "width": 50,
+        "trimX": 284,
+        "trimY": 0,
+        "width": 71,
         "height": 66,
-        "rawWidth": 50,
+        "rawWidth": 71,
         "rawHeight": 66,
         "borderTop": 0,
         "borderBottom": 0,
@@ -227,7 +227,7 @@
           "maxPos": []
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "41c78e0c-fb2d-4fdb-83e2-f9ce17a2bdbf@6c48a",
+        "imageUuidOrDatabaseUri": "b0a203e0-30ff-4de7-9964-2eed35d29153@6c48a",
         "atlasUuid": "3fee885a-dd19-484d-bc34-a499d3322f2a"
       },
       "ver": "1.0.11",
@@ -242,6 +242,6 @@
     "atlasTextureName": "absorbEffect.png",
     "format": 3,
     "uuid": "3fee885a-dd19-484d-bc34-a499d3322f2a",
-    "textureUuid": "41c78e0c-fb2d-4fdb-83e2-f9ce17a2bdbf@6c48a"
+    "textureUuid": "b0a203e0-30ff-4de7-9964-2eed35d29153@6c48a"
   }
 }

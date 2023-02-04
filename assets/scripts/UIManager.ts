@@ -1,4 +1,6 @@
 import { _decorator, Component, Node, director, Label } from 'cc';
+import { Ball } from './Ball';
+import { LevelManager } from './LevelManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('UIManager')
@@ -11,20 +13,22 @@ export class UIManager extends Component {
     public score = 0;
 
     start() {
-        
+
     }
 
     update(deltaTime: number) {
+        this.score = LevelManager.instance.affectedNum*100/LevelManager.instance.normalCellNum;
         for (let i = 0; i < this.scores.length; i++) {
             this.scores[i].string = this.score.toString();
         }
     }
 
-    onRestart () {
+    onRestart() {
+        Ball.balls = [];
         director.loadScene('MainScene');
     }
 
-    onDead () {
+    onDead() {
         this.center.active = true;
     }
 }
