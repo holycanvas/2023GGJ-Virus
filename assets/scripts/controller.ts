@@ -17,7 +17,7 @@ export class Controller extends Component {
     public operationTheta = 60;
     @property(Node)
     public indicator: Node | null = null;
-    public operationSpeed = .5;
+    public operationStrength = 100;
     public isOperating = false;
 
     private _moveState = new Vec4();
@@ -46,7 +46,9 @@ export class Controller extends Component {
         this.indicator.eulerAngles = new Vec3(this.indicator.eulerAngles.z, Math.atan2(this.operationDirection.y, this.operationDirection.x) * (180 / Math.PI),this.indicator.eulerAngles.z);
         this.direction.y = this._moveState.x + this._moveState.y;
         this.direction.x = this._moveState.z + this._moveState.w;
-        this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction.normalize(), this.speed * deltaTime));
+        if (!this.direction.equals(Vec3.ZERO)) {
+            this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction.normalize(), this.speed * deltaTime));
+        }
     }
 
     onKeyDown (event: EventKeyboard) {
@@ -105,7 +107,7 @@ export class Controller extends Component {
         direction.z = 0;
         const length = Math.max(direction.length(), 1);
         direction.normalize();
-        event.otherCollider.getComponent(RigidBody).applyImpulse(direction.multiplyScalar(this.operationSpeed / length));
+        event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
     }
 
     onMouseMove (event: EventMouse) {
