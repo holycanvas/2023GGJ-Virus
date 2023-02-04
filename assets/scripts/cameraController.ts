@@ -5,10 +5,6 @@ class CameraController extends Component
 {   
     @property(Node)
     public target: Node | null = null;
-    @property(SphereCollider)
-    public collider: SphereCollider;
-    public focusAreaSize: Vec2 = new Vec2(5,5);
-    public offset: Vec2 = new Vec2(0, 1);
     public cameraHeight = 30;
     // left and right input
     private inputX: number = 0;

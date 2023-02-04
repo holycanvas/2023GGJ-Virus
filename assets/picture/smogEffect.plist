@@ -4,78 +4,78 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>launchEffect(1).png</key>
+            <key>smogEffect(1).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>textureRect</key>
-                <string>{{0,0},{78,71}}</string>
+                <string>{{0,0},{43,27}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>launchEffect(2).png</key>
+            <key>smogEffect(2).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>textureRect</key>
-                <string>{{78,0},{78,71}}</string>
+                <string>{{43,0},{43,27}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>launchEffect(3).png</key>
+            <key>smogEffect(3).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>textureRect</key>
-                <string>{{156,0},{78,71}}</string>
+                <string>{{86,0},{43,27}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>launchEffect(4).png</key>
+            <key>smogEffect(4).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>textureRect</key>
-                <string>{{234,0},{78,71}}</string>
+                <string>{{129,0},{43,27}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>launchEffect(5).png</key>
+            <key>smogEffect(5).png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>spriteSourceSize</key>
-                <string>{78,71}</string>
+                <string>{43,27}</string>
                 <key>textureRect</key>
-                <string>{{312,0},{78,71}}</string>
+                <string>{{172,0},{43,27}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -89,13 +89,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>launchEffect.png</string>
+            <string>smogEffect.png</string>
             <key>size</key>
-            <string>{390,71}</string>
+            <string>{215,27}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6177d0925de857222fb2604bbe727142:adaf9318e45288540712444591913476:d3107b795b452fcf34833f8c764f9d47$</string>
+            <string>$TexturePacker:SmartUpdate:104a49e9de5ff3b3137a46ba7221149f:65a2da32a6ce95de43345b2369c1b171:b67a738320974fbfc910765da86314ca$</string>
             <key>textureFileName</key>
-            <string>launchEffect.png</string>
+            <string>smogEffect.png</string>
         </dict>
     </dict>
 </plist>

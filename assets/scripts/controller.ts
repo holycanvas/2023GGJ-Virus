@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, Vec3, Vec2, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4 } from 'cc';
+import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation } from 'cc';
 import { Ball, BallType } from './Ball';
 import { LevelManager } from './LevelManager';
 const { ccclass, property } = _decorator;
@@ -10,18 +10,54 @@ export class Controller extends Component {
     private rigidBody: RigidBody | null = null;
     private mainCamera: Camera | null = null;
     private operationDirection = new Vec3();
-    private isOperationPull = true;
+    private _isOperationPull: boolean = false;
+    private currentAnimation: Animation;
+    private set isOperationPull(value: boolean) {
+        if (this._isOperating) {
+            return;
+        }
+        this._isOperationPull = value;
+        if (value) {
+            this.currentAnimation = this.absorbAnimation;
+        } else {
+            this.currentAnimation = this.launchAnimation;
+        }
+    };
+    private get isOperationPull() {
+        return this._isOperationPull;
+    }
     private mousePosition = new Vec3;
     private collider: Collider | null = null;
-    @property({ type: CCFloat, slide: true, range: [0, 50]})
+    @property({ type: CCFloat, slide: true, range: [0, 50] })
     public operationRadius = 30;
-    @property({ type: CCFloat, slide: true, range: [0, 180]})
+    @property({ type: CCFloat, slide: true, range: [0, 180] })
     public operationTheta = 60;
     @property(Node)
     public indicator: Node | null = null;
     public operationStrength = 100;
-    public isOperating = false;
-
+    private _isOperating: boolean = false;
+    public set isOperating(value: boolean) {
+        if(this._isOperating === value){
+            return;
+        }
+        this._isOperating = value;
+        if (!this.currentAnimation) {
+            return;
+        }
+        if (value) {
+            this.currentAnimation.play();
+        } else {
+            this.launchAnimation.pause();
+            this.launchAnimation.getComponent(Sprite)!.spriteFrame = null;
+            this.absorbAnimation.pause();
+            this.absorbAnimation.getComponent(Sprite)!.spriteFrame = null;
+        }
+    };
+    public get isOperating() { return this._isOperating }
+    @property(Animation)
+    public launchAnimation: Animation | null = null;
+    @property(Animation)
+    public absorbAnimation: Animation | null = null;
     private _moveState = new Vec4();
     private _ball: Ball | null = null;
     
@@ -51,7 +87,8 @@ export class Controller extends Component {
         this.operationDirection.subtract(this.node.worldPosition);
         this.operationDirection.z = 0;
         this.operationDirection.normalize();
-        this.indicator.eulerAngles = new Vec3(this.indicator.eulerAngles.z, Math.atan2(this.operationDirection.y, this.operationDirection.x) * (180 / Math.PI),this.indicator.eulerAngles.z);
+        this.indicator.eulerAngles = new Vec3(this.indicator.eulerAngles.x, this.indicator.eulerAngles.y, Math.atan2(this.operationDirection.y, this.operationDirection.x) *
+            (180 / Math.PI));
         this.direction.y = this._moveState.x + this._moveState.y;
         this.direction.x = this._moveState.z + this._moveState.w;
         if (!this.direction.equals(Vec3.ZERO)) {
@@ -59,7 +96,7 @@ export class Controller extends Component {
         }
     }
 
-    onKeyDown (event: EventKeyboard) {
+    onKeyDown(event: EventKeyboard) {
         if (event.keyCode === KeyCode.KEY_W) {
             this._moveState.x = 1;
         } else if (event.keyCode === KeyCode.KEY_S) {
@@ -69,15 +106,15 @@ export class Controller extends Component {
         } else if (event.keyCode === KeyCode.KEY_D) {
             this._moveState.w = 1;
         } else if (event.keyCode === KeyCode.KEY_Q) {
-            this.isOperating = true;
             this.isOperationPull = true;
-        } else if (event.keyCode === KeyCode.KEY_E) {
             this.isOperating = true;
+        } else if (event.keyCode === KeyCode.KEY_E) {
             this.isOperationPull = false;
+            this.isOperating = true;
         }
     }
 
-    onKeyUp (event: EventKeyboard) {
+    onKeyUp(event: EventKeyboard) {
         if (event.keyCode === KeyCode.KEY_W) {
             this._moveState.x = 0;
         } else if (event.keyCode === KeyCode.KEY_S) {
@@ -86,25 +123,32 @@ export class Controller extends Component {
             this._moveState.z = 0;
         } else if (event.keyCode === KeyCode.KEY_D) {
             this._moveState.w = 0;
-        } else if (event.keyCode === KeyCode.KEY_Q || event.keyCode === KeyCode.KEY_E) {
+        } else if (event.keyCode === KeyCode.KEY_Q && this._isOperationPull) {
+            this.isOperating = false;
+        } else if (event.keyCode === KeyCode.KEY_E && !this._isOperationPull) {
             this.isOperating = false;
         }
     }
 
-    onMouseDown (event: EventMouse) {
-        this.isOperating = true;
+    onMouseDown(event: EventMouse) {
         if (event.getButton() === EventMouse.BUTTON_LEFT) {
             this.isOperationPull = true;
         } else if (event.getButton() === EventMouse.BUTTON_RIGHT) {
             this.isOperationPull = false;
         }
+        this.isOperating = true;
+
     }
 
-    onMouseUp (event: EventMouse) {
-        this.isOperating = false;
+    onMouseUp(event: EventMouse) {
+        if (event.getButton() === EventMouse.BUTTON_LEFT && this._isOperationPull) {
+            this.isOperating = false;
+        } else if (event.getButton() === EventMouse.BUTTON_RIGHT && !this._isOperationPull) {
+            this.isOperating = false;
+        }
     }
 
-    onOperation (event: ITriggerEvent) {
+    onOperation(event: ITriggerEvent) {
         if (!this.isOperating) return;
         const direction = new Vec3();
         if (this.isOperationPull) {
@@ -118,8 +162,8 @@ export class Controller extends Component {
         event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
     }
 
-    onMouseMove (event: EventMouse) {
-        event.getLocation(this.mousePosition);
+    onMouseMove(event: EventMouse) {
+        event.getLocation(this.mousePosition as unknown as Vec2);
     }
 }
 
