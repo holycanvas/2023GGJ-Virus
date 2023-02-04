@@ -2,12 +2,12 @@
   "ver": "1.1.40",
   "importer": "prefab",
   "imported": true,
-  "uuid": "e2685eaa-00c3-41d2-b804-f5afc4a870ba",
+  "uuid": "2bd171bf-763a-4f3d-ae69-3c848455e9fe",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "UI"
+    "syncNodeName": "Canvas"
   }
 }
