@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Prefab, instantiate, find, Vec3, Vec2, CCInteger, Material } from 'cc';
 import { TestSpring } from './TestSpring';
+import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('LevelManager')
@@ -36,10 +37,12 @@ export class LevelManager extends Component {
     public defenderMaterial = null;
 
     public springManager: TestSpring | null = null;
+    public uiManager: UIManager | null = null;
 
-    onLoad() {
+    onLoad () {
         LevelManager.instance = this;
         this.springManager = this.getComponent(TestSpring);
+        this.uiManager = find('Canvas').getComponent(UIManager);
     }
     start() {
         const normalCellContainer = find('NormalCellContainer');
