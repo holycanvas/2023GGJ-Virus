@@ -22,20 +22,26 @@ export class DefenderAI extends BaseAI {
     }
 
     update(deltaTime: number) {
+        const closeBall = Ball.balls.find(item => item.ballType === BallType.virus && Vec3.distance(item.node.worldPosition, this.node.worldPosition) <= this.searchRange)
+        if (closeBall) {
 
-        //记录十帧前玩家的位置
-        if (Vec3.distance(Controller.instance.node.worldPosition, this.node.worldPosition) <= this.searchRange) {
-            if (this._time === 0) {
-                this.lastPoint.set(Controller.instance.node.worldPosition);
-            }
-            this._time++;
-        } else {
-            const closeBall = Ball.balls.find(item => item.ballType === BallType.virus && Vec3.distance(item.node.worldPosition, this.node.worldPosition) <= this.searchRange)
-            if (closeBall) {
+            //记录十帧前玩家的位置
+            if (Vec3.distance(Controller.instance.node.worldPosition, this.node.worldPosition) <= this.searchRange) {
+                if (this._time === 0) {
+                    this.lastPoint.set(Controller.instance.node.worldPosition);
+                }
+                this._time++;
+            } else {
+
                 if (this._time === 0) {
                     this.lastPoint.set(closeBall.node.worldPosition);
                 }
                 this._time++;
+
+            }
+        } else {
+            if (this._time > 0) {
+                this._time--;
             }
         }
 
@@ -44,9 +50,7 @@ export class DefenderAI extends BaseAI {
             this._rigidBody.applyImpulse(value);
             this._time = 0;
         }
-        if (this._time > 0) {
-            this._time--;
-        }
+
 
     }
 }
