@@ -19,6 +19,10 @@ export class Controller extends Component {
     public indicator: Node | null = null;
     public operationSpeed = .5;
     
+    public static instance:Controller;
+    onLoad(){
+        Controller.instance = this;
+    }
     start() {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
