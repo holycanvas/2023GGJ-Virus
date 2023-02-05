@@ -95,7 +95,4 @@ export class Ball extends Component {
     onCollisionExit(event: ICollisionEvent) {
 
     }
-    update(deltaTime: number) {
-
-    }
 }
