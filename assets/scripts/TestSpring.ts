@@ -27,8 +27,10 @@ export class TestSpring extends Component {
     static tempVec3 = new Vec3();
     @property(Node)
     normalCellContainer: Node;
+
+    private lineGroup: Node | null = null;
     start() {
-        
+        this.lineGroup = this.normalCellContainer.getChildByName('Line');
     }
 
     update(deltaTime: number) {
@@ -52,20 +54,28 @@ export class TestSpring extends Component {
             rigidBodyB.applyForce(force.negative());
         }
         const springs = this.springs;
-
-        for (let i = springs.length - 1; i >= 0; i -= 2) {
-            const rigidBodyA = springs[i];
-            const rigidBodyB = springs[i - 1];
-            const line: Node = this.lines[i] ??= instantiate(this.linePrefab);
-            this.normalCellContainer.addChild(line);
-            line.setWorldPosition(Vec3.add(TestSpring.tempVec3, rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition).multiplyScalar(50).add3f(240, 0, 0));
-            const sub = Vec3.subtract(TestSpring.tempVec3, rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition).clone().normalize();
-            line.getComponent(UITransform).setContentSize(Vec3.len(Vec3.subtract(TestSpring.tempVec3, rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition)) * 20, 4);
-            line.eulerAngles = new Vec3(line.eulerAngles.x, line.eulerAngles.y, Math.atan2(sub.y, sub.x) * (180 / Math.PI));
-            //@ts-expect-error
-            window.aaa = line
+        if (this.lines.length > springs.length / 2) {
+            for (let i = springs.length / 2 - 1; i < this.lines.length; i++) {
+                this.lines[i].active = false;
+            }
+        } else {
+            for (let i = this.lines.length; i < springs.length / 2; i++) {
+                const line = instantiate(this.linePrefab);
+                this.lines.push(line);
+                this.lineGroup.addChild(line);
+            }
         }
-        this.springs.map(item => item.node.worldPosition);
+
+        for (let i = 0; i < springs.length; i += 2) {
+            const rigidBodyA = springs[i];
+            const rigidBodyB = springs[i + 1];
+            const line: Node = this.lines[i / 2];
+            line.active = true;
+            line.setWorldPosition(Vec3.add(TestSpring.tempVec3, rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition).multiplyScalar(0.5));
+            const sub = Vec3.subtract(new Vec3(), rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition);
+            line.getComponent(UITransform).setContentSize(sub.length(), 0.1);
+            line.eulerAngles = new Vec3(line.eulerAngles.x, line.eulerAngles.y, Math.atan2(sub.y, sub.x) * (180 / Math.PI));
+        }
 
     }
     add(ballOne:RigidBody,ballTwo:RigidBody){
@@ -87,10 +97,6 @@ export class TestSpring extends Component {
                 this._springMaps.delete(rigidBodyB.uuid + rigidBodyA.uuid);
                 js.array.fastRemoveAt(springs, i);
                 js.array.fastRemoveAt(springs, i - 1);
-                if (this.lines[i]) {
-                    this.lines[i].removeFromParent()
-                    js.array.fastRemoveAt(this.lines, i);
-                }
             }
         }
 
