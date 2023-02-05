@@ -180,15 +180,25 @@ export class Controller extends Component {
 
     onOperation(event: ITriggerEvent) {
         if (!this.isOperating) return;
+        const direction = new Vec3();
         if (this.isOperationPull) {
-            const direction = new Vec3();
             Vec3.subtract(direction, event.selfCollider.node.worldPosition, event.otherCollider.node.worldPosition);
             direction.z = 0;
             const length = Math.max(direction.length(), 1);
             direction.normalize();
             event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
             AudioController.instance.playAbsorb();
-        }
+        }//else {
+        //     const ball = event.otherCollider.getComponent(Ball);
+        //     if (ball.ballType !== BallType.virus) return;
+        //     Vec3.subtract(direction, event.otherCollider.node.worldPosition, event.selfCollider.node.worldPosition);
+        //     direction.z = 0;
+        //     const length = Math.max(direction.length(), 1);
+        //     direction.normalize();
+        //     ball._rigidBody.applyImpulse(Vec3.multiplyScalar(direction, direction, this.pushStrength / length));
+        //     // AudioController.instance.playShoot();
+        // }
+        
     }
 
     onMouseMove(event: EventMouse) {
