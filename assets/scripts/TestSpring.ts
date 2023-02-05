@@ -56,7 +56,7 @@ export class TestSpring extends Component {
             this.lines[i].width = curveRange;
             (this.lines[i].positions as Vec3[]) = [rigidBodyA.node.worldPosition,rigidBodyB.node.worldPosition];
         }
-         this.springs.map(item=>item.node.worldPosition);
+        this.springs.map(item=>item.node.worldPosition);
         
     }
     add(ballOne:RigidBody,ballTwo:RigidBody){
@@ -75,6 +75,7 @@ export class TestSpring extends Component {
             if (rigidBodyA.node === ballOne || rigidBodyB.node === ballOne) {
                 js.array.fastRemoveAt(springs, i);
                 js.array.fastRemoveAt(springs, i - 1);
+                this.lines[i].enabled = false;
                 this.lines[i].destroy()
                 js.array.fastRemoveAt(this.lines, i);
             }
