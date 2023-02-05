@@ -37,13 +37,10 @@
       },
       {
         "__id__": 12
-      },
-      {
-        "__id__": 14
       }
     ],
     "_prefab": {
-      "__id__": 18
+      "__id__": 14
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -277,60 +274,6 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "96Fi9TuBlKNJlZjjusUNM/"
-  },
-  {
-    "__type__": "cc.Line",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 15
-    },
-    "_texture": null,
-    "_material": null,
-    "_worldSpace": true,
-    "_positions": [],
-    "_width": {
-      "__id__": 16
-    },
-    "_tile": {
-      "__type__": "cc.Vec2",
-      "x": 1,
-      "y": 1
-    },
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_color": {
-      "__id__": 17
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "d4Q+rrIK5Jq5hslfcgqy1g"
-  },
-  {
-    "__type__": "cc.CurveRange",
-    "mode": 0,
-    "constant": 0.02,
-    "multiplier": 1
-  },
-  {
-    "__type__": "cc.GradientRange",
-    "_mode": 0,
-    "color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    }
   },
   {
     "__type__": "cc.PrefabInfo",
