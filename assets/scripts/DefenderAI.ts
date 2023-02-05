@@ -2,6 +2,7 @@ import { _decorator, Component, RigidBody, ccenum, Vec3, math } from 'cc';
 import { Ball, BallType } from './Ball';
 import { BaseAI } from './BaseAI';
 import { Controller } from './controller';
+import { LevelManager } from './LevelManager';
 const { ccclass, property, requireComponent } = _decorator;
 
 @ccclass('Defender')
@@ -10,18 +11,33 @@ export class DefenderAI extends BaseAI {
     protected static _tempVec = new Vec3();
     protected _time = 0;
     @property
-    searchRange = 100;
+    searchRange = 10;
+    private _searchRangeAcc = 1;
     @property
     /** 追击的阈值，超过这个阈值将发起一次进攻 */
     chaseThreshold = 100;
     @property
-    chaseSpeed = 10;
+    chaseSpeed = 100;
+    private innerAcceleration = 10;
+    private innerMassAcc = 0.1;
     protected lastPoint: Vec3 = new Vec3();
     start() {
         super.start();
     }
+    needCure(){
+        if(LevelManager.instance.affectedNum/LevelManager.instance.normalCellNum>0.2){
+            return true;
+        }
+        return false;
+    }
 
     update(deltaTime: number) {
+        if(this.needCure()){
+            //需要尽快修复，开启威力增强模式。
+            this.chaseSpeed+=this.innerAcceleration;
+            this._rigidBody.mass+=this.innerMassAcc;
+            this.searchRange+=this._searchRangeAcc;
+        }
         const closeBall = Ball.balls.find(item => item.ballType === BallType.virus && Vec3.distance(item.node.worldPosition, this.node.worldPosition) <= this.searchRange)
         if (closeBall) {
 

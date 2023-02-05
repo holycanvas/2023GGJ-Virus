@@ -45,7 +45,7 @@ export class Controller extends Component {
         if (!this.currentAnimation) {
             return;
         }
-        if (value) {
+        if (value && this._ball._ballType === BallType.virus) {
             this.currentAnimation.play();
         } else {
             this.launchAnimation.pause();
@@ -92,6 +92,7 @@ export class Controller extends Component {
     update(deltaTime: number) {
         if (this._ball.ballType === BallType.cured) {
             LevelManager.instance.uiManager.onDead();
+            this.isOperating = false;
             return;
         }
         this.mainCamera.screenToWorld(this.mousePosition, this.operationDirection);

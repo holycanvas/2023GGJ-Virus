@@ -17,7 +17,7 @@ export class UIManager extends Component {
     }
 
     update(deltaTime: number) {
-        this.score = LevelManager.instance.affectedNum*100/LevelManager.instance.normalCellNum;
+        this.score = LevelManager.instance.affectedNum * 100 / LevelManager.instance.normalCellNum;
         for (let i = 0; i < this.scores.length; i++) {
             this.scores[i].string = this.score.toString();
         }
@@ -30,6 +30,8 @@ export class UIManager extends Component {
 
     onDead() {
         this.center.active = true;
+        LevelManager.instance.springManager['lines'].forEach(item => item.destroy());
+        LevelManager.instance.springManager['lines'] = [];
     }
 }
 
