@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Collider, CCFloat, RigidBody, Vec3, js, clamp, Line, CurveRange, Prefab, instantiate, UITransform } from 'cc';
+import { _decorator, Component, Node, Collider, CCFloat, RigidBody, Vec3, js, clamp, Line, CurveRange, Prefab, instantiate, UITransform, find } from 'cc';
 import { Ball } from './Ball';
 const { ccclass, property } = _decorator;
 
@@ -29,6 +29,9 @@ export class TestSpring extends Component {
     normalCellContainer: Node;
 
     private lineGroup: Node | null = null;
+    onLoad(){
+        this.normalCellContainer = find('NormalCellContainer');
+    }
     start() {
         this.lineGroup = this.normalCellContainer.getChildByName('Line');
     }

@@ -58,6 +58,7 @@ export class Controller extends Component {
             this.absorbAnimation.getComponent(Sprite)!.spriteFrame = null;
         }
     };
+    public touchFlag: boolean = false;
     public get isOperating() { return this._isOperating }
     @property(Animation)
     public launchAnimation: Animation | null = null;

@@ -128,6 +128,8 @@
     "searchRange": 100,
     "chaseThreshold": 100,
     "chaseSpeed": 10,
+    "massThreshold": 10,
+    "maxSearchRange": 30,
     "_id": ""
   },
   {

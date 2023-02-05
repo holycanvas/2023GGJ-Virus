@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Prefab, instantiate, find, Vec3, Vec2, CCInteger, Material, RigidBody, js } from 'cc';
 import { BorderController } from './BorderController';
+import { Controller } from './controller';
 import { TestSpring } from './TestSpring';
 import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;
@@ -36,10 +37,12 @@ export class LevelManager extends Component {
 
     @property(Material)
     public defenderMaterial = null;
-
+    @property(Controller)
+    public virus:Controller;
     public springManager: TestSpring | null = null;
     public uiManager: UIManager | null = null;
-    public normalCellContainer;
+    public normalCellContainer:Node;
+    public defenderCellContainer:Node;
     public affectedNum:number = 0;
 
 
@@ -73,30 +76,36 @@ export class LevelManager extends Component {
         LevelManager.instance = this;
         this.generateBorders();
         this.normalCellContainer = find('NormalCellContainer');
+        this.defenderCellContainer = find('DefenderCellContainer');
         this.springManager = this.getComponent(TestSpring);
         this.uiManager = find('Canvas').getComponent(UIManager);
+    }
+    generateNormalCell(){
+        const node = instantiate(this.normalCell);
+        this.normalCellContainer.addChild(node);
+        node.position = new Vec3(Math.random() * this.normalCellRange.x - this.normalCellRange.x / 2,
+            Math.random() * this.normalCellRange.y - this.normalCellRange.y / 2, 0);
+    }
+    generateDefenderCell(){
+        const node = instantiate(this.defenderCell);
+        this.defenderCellContainer.addChild(node);
+        const xValue = Math.random() * this.defenderRange.x - this.defenderRange.x / 2
+        const isXNagetive = xValue < 0;
+        const yValue = Math.random() * this.defenderRange.y - this.defenderRange.y / 2
+        const isYNagetive = yValue < 0;
+
+        node.position = new Vec3(
+            isXNagetive ? xValue - this.defenderSafeRange.x : xValue + this.defenderSafeRange.x,
+            isYNagetive ? yValue - this.defenderSafeRange.y : yValue + this.defenderSafeRange.y
+        );
     }
     start() {
         
         for (let i = 0; i < this.normalCellNum; i++) {
-            const node = instantiate(this.normalCell);
-            this.normalCellContainer.addChild(node);
-            node.position = new Vec3(Math.random() * this.normalCellRange.x - this.normalCellRange.x / 2,
-                Math.random() * this.normalCellRange.y - this.normalCellRange.y / 2, 0);
+            this.generateNormalCell();
         }
-        const defenderCellContainer = find('DefenderCellContainer');
         for (let i = 0; i < this.defenderNum; i++) {
-            const node = instantiate(this.defenderCell);
-            defenderCellContainer.addChild(node);
-            const xValue = Math.random() * this.defenderRange.x - this.defenderRange.x / 2
-            const isXNagetive = xValue < 0;
-            const yValue = Math.random() * this.defenderRange.y - this.defenderRange.y / 2
-            const isYNagetive = yValue < 0;
-
-            node.position = new Vec3(
-                isXNagetive ? xValue - this.defenderSafeRange.x : xValue + this.defenderSafeRange.x,
-                isYNagetive ? yValue - this.defenderSafeRange.y : yValue + this.defenderSafeRange.y
-            );
+            this.generateDefenderCell();
         }
     }
 

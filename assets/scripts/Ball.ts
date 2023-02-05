@@ -76,7 +76,7 @@ export class Ball extends Component {
                 .add(otherBall.node.worldPosition)
                 .divide3f(2, 2, 2);
             this.playSmog(collisionPoint);
-
+            LevelManager.instance.virus.touchFlag = true;
             LevelManager.instance.affectedNum++;
 
         } else if (this.ballType === BallType.defender && otherBall.ballType === BallType.virus) {
