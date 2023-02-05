@@ -21,6 +21,8 @@ export class TestSpring extends Component {
 
     protected lines:Line[] = [];
 
+    private _springMaps = new Set();
+
     start() {
 
     }
@@ -60,11 +62,13 @@ export class TestSpring extends Component {
         
     }
     add(ballOne:RigidBody,ballTwo:RigidBody){
+        if (this._springMaps.has(ballOne.uuid + ballTwo.uuid) || this._springMaps.has(ballTwo.uuid + ballOne.uuid)) return;
         const springs = this.springs;
         const length = springs.length;
         springs.length += 2;
         springs[length] = ballOne;
         springs[length + 1] = ballTwo;
+        this._springMaps.add(ballOne.uuid + ballTwo.uuid);
         
     }
     remove(ballOne: Node) {
@@ -73,6 +77,8 @@ export class TestSpring extends Component {
             const rigidBodyA = springs[i];
             const rigidBodyB = springs[i - 1];
             if (rigidBodyA.node === ballOne || rigidBodyB.node === ballOne) {
+                this._springMaps.delete(rigidBodyA.uuid + rigidBodyB.uuid);
+                this._springMaps.delete(rigidBodyB.uuid + rigidBodyA.uuid);
                 js.array.fastRemoveAt(springs, i);
                 js.array.fastRemoveAt(springs, i - 1);
                 this.lines[i].destroy()
