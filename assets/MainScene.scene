@@ -40,7 +40,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 57
+      "__id__": 69
     },
     "_id": "55efb22d-7248-4c55-82e7-4822ca870057"
   },
@@ -982,6 +982,18 @@
       },
       {
         "__id__": 54
+      },
+      {
+        "__id__": 57
+      },
+      {
+        "__id__": 60
+      },
+      {
+        "__id__": 63
+      },
+      {
+        "__id__": 66
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -1057,21 +1069,141 @@
     ]
   },
   {
-    "__type__": "cc.SceneGlobals",
-    "ambient": {
+    "__type__": "cc.TargetOverrideInfo",
+    "source": {
+      "__id__": 11
+    },
+    "sourceInfo": {
       "__id__": 58
     },
-    "shadows": {
+    "propertyPath": [
+      "indicator"
+    ],
+    "target": {
+      "__id__": 11
+    },
+    "targetInfo": {
       "__id__": 59
+    }
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "32ft/bDMxBF5sNTgDsZ3oM"
+    ]
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "75UO0tmp5NQa3YXS6+v/2m"
+    ]
+  },
+  {
+    "__type__": "cc.TargetOverrideInfo",
+    "source": {
+      "__id__": 11
     },
-    "_skybox": {
-      "__id__": 60
-    },
-    "fog": {
+    "sourceInfo": {
       "__id__": 61
     },
-    "octree": {
+    "propertyPath": [
+      "launchAnimation"
+    ],
+    "target": {
+      "__id__": 11
+    },
+    "targetInfo": {
       "__id__": 62
+    }
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "32ft/bDMxBF5sNTgDsZ3oM"
+    ]
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "509OGKp3BMeKcxdVtwI+Et"
+    ]
+  },
+  {
+    "__type__": "cc.TargetOverrideInfo",
+    "source": {
+      "__id__": 11
+    },
+    "sourceInfo": {
+      "__id__": 64
+    },
+    "propertyPath": [
+      "absorbAnimation"
+    ],
+    "target": {
+      "__id__": 11
+    },
+    "targetInfo": {
+      "__id__": 65
+    }
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "32ft/bDMxBF5sNTgDsZ3oM"
+    ]
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "aa17LolzlItojeYJAPRojN"
+    ]
+  },
+  {
+    "__type__": "cc.TargetOverrideInfo",
+    "source": {
+      "__id__": 11
+    },
+    "sourceInfo": {
+      "__id__": 67
+    },
+    "propertyPath": [
+      "idleAnimation"
+    ],
+    "target": {
+      "__id__": 11
+    },
+    "targetInfo": {
+      "__id__": 68
+    }
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "32ft/bDMxBF5sNTgDsZ3oM"
+    ]
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "1aHsvFoidCRZdg4UtwA+m/"
+    ]
+  },
+  {
+    "__type__": "cc.SceneGlobals",
+    "ambient": {
+      "__id__": 70
+    },
+    "shadows": {
+      "__id__": 71
+    },
+    "_skybox": {
+      "__id__": 72
+    },
+    "fog": {
+      "__id__": 73
+    },
+    "octree": {
+      "__id__": 74
     }
   },
   {
