@@ -210,7 +210,7 @@
     "__prefab": {
       "__id__": 8
     },
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_clips": [
       {
         "__uuid__": "de941ffd-f6c2-4d47-b8a7-ee2f647e7bf6",
@@ -478,6 +478,9 @@
       "__expectedType__": "cc.Prefab"
     },
     "_ballType": 0,
+    "emotion": {
+      "__id__": 7
+    },
     "motionStreakAnimation": {
       "__id__": 13
     },

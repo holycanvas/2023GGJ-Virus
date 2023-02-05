@@ -11,12 +11,15 @@ export class BaseAI extends Ball {
     private _originHeight = 0;
     private _isPlayingMotionStreak = false;
     @property(Animation)
+    emotion:Animation|null = null;
+    @property(Animation)
     motionStreakAnimation:Animation;
     start() {
         super.start();
         this._uiTransform = this.getComponent(UITransform);
         this._originWidth = this._uiTransform.width;
         this._originHeight = this._uiTransform.height;
+        this.scheduleOnce(() => this.emotion?.play(), math.randomRange(0, 10));
     }
 
     update(deltaTime: number) {
