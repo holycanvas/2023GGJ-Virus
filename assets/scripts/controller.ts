@@ -137,11 +137,6 @@ export class Controller extends Component {
         this.attackBonusTime -= deltaTime;
         this.speedBonusTime -= deltaTime;
         this.invincibleBonusTime -= deltaTime;
-        if (this.attackBonusTime > 0) {
-            this.pushStrength = this._originStrength * 3;
-        } else {
-            this.pushStrength = this._originStrength;
-        }
 
         if (this.speedBonusTime > 0) {
             this.speed = 3 * this._originSpeed;
@@ -172,7 +167,7 @@ export class Controller extends Component {
             this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction.normalize(), this.speed * deltaTime));
         }
         this._accumulateTime += deltaTime;
-        if (this.isOperating && !this.isOperationPull && this._accumulateTime > this.pushInterval) {
+        if (this.isOperating && !this.isOperationPull && this.attackBonusTime < 0 && this._accumulateTime > this.pushInterval) {
             const ray = new geometry.Ray(this.node.worldPosition.x, this.node.worldPosition.y, this.node.worldPosition.z,
                 this.operationDirection.x, this.operationDirection.y, this.operationDirection.z);
             if (physics.PhysicsSystem.instance.raycast(ray, 1 << 0, this.pushLength)) {
@@ -253,16 +248,16 @@ export class Controller extends Component {
             direction.normalize();
             event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
             AudioController.instance.playAbsorb();
-        }//else {
-        //     const ball = event.otherCollider.getComponent(Ball);
-        //     if (ball.ballType !== BallType.virus) return;
-        //     Vec3.subtract(direction, event.otherCollider.node.worldPosition, event.selfCollider.node.worldPosition);
-        //     direction.z = 0;
-        //     const length = Math.max(direction.length(), 1);
-        //     direction.normalize();
-        //     ball._rigidBody.applyImpulse(Vec3.multiplyScalar(direction, direction, this.pushStrength / length));
-        //     // AudioController.instance.playShoot();
-        // }
+        } else if (this.attackBonusTime > 0) {
+            const ball = event.otherCollider.getComponent(Ball);
+            if (!ball || ball.ballType !== BallType.virus) return;
+            Vec3.subtract(direction, event.otherCollider.node.worldPosition, event.selfCollider.node.worldPosition);
+            direction.z = 0;
+            const length = Math.max(direction.length(), 1);
+            direction.normalize();
+            ball._rigidBody.applyImpulse(Vec3.multiplyScalar(direction, direction, this.pushStrength / length));
+            // AudioController.instance.playShoot();
+        }
 
     }
 

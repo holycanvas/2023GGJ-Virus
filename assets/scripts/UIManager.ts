@@ -18,6 +18,8 @@ export class UIManager extends Component {
     @property(Label)
     public word: Label;
 
+    public winCondition = 50;
+
     start() {
         this.schedule(()=>{
             this._time--;
@@ -47,7 +49,7 @@ export class UIManager extends Component {
         director.loadScene('MainScene');
     }
     timeup(){
-        if(this.score>60){
+        if(this.score > this.winCondition){
             this.word.string = "The virus successfully infected its host";
             
             //TODO: animtation for a better view
