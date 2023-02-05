@@ -110,7 +110,7 @@ export class Controller extends Component {
     }
     update(deltaTime: number) {
         if (this._ball.ballType === BallType.cured) {
-            LevelManager.instance.uiManager.onDead("病毒被消灭了");
+            LevelManager.instance.uiManager.onDead("The root cause of the virus was eliminated");
 
             return;
         }
