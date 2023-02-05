@@ -69,8 +69,6 @@ export class UIManager extends Component {
         this.center.active = true;
         this.unscheduleAllCallbacks();
         Controller.instance.onDead();
-        LevelManager.instance.springManager['lines'].forEach(item => item.destroy());
-        LevelManager.instance.springManager['lines'] = [];
         this.word.string = word;
     }
 
