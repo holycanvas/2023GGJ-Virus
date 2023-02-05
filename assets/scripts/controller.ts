@@ -114,7 +114,10 @@ export class Controller extends Component {
                 const result = physics.PhysicsSystem.instance.raycastResults;
                 for (let i = 0; i < result.length; i++) {
                     const target = result[i];
-                    target.collider.getComponent(RigidBody).applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
+                    const ball = target.collider.getComponent(Ball);
+                    if (ball.ballType === BallType.virus) {
+                        ball._rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
+                    }
                 }
             }
             AudioController.instance.playShoot();

@@ -694,7 +694,7 @@
     "absorbAnimation": {
       "__id__": 23
     },
-    "pushStrength": 5,
+    "pushStrength": 15,
     "pushLength": 5,
     "pushInterval": 0.2,
     "particleSystem": {
