@@ -19,6 +19,8 @@ export class BaseAI extends Ball {
         this._uiTransform = this.getComponent(UITransform);
         this._originWidth = this._uiTransform.width;
         this._originHeight = this._uiTransform.height;
+        this.scheduleOnce(() => this.animation?.play(), math.randomRange(0, 10));
+
         this.scheduleOnce(() => this.emotion?.play(), math.randomRange(0, 10));
     }
 
