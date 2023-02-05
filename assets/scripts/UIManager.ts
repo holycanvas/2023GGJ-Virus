@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, director, Label, Color } from 'cc';
 import { Ball } from './Ball';
+import { Controller } from './controller';
 import { LevelManager } from './LevelManager';
 const { ccclass, property } = _decorator;
 
@@ -28,13 +29,15 @@ export class UIManager extends Component {
             if(this._time == 0){
                 // GAME OVER
                 this.timeup();
-                this.unscheduleAllCallbacks();
             }
         } ,1);
     }
 
     update(deltaTime: number) {
         this.score = LevelManager.instance.affectedNum * 100 / LevelManager.instance.normalCellNum;
+        if(this.center.active){
+            return;
+        }
         for (let i = 0; i < this.scores.length; i++) {
             this.scores[i].string = this.score.toString();
         }
@@ -51,15 +54,17 @@ export class UIManager extends Component {
             //TODO: animtation for a better view
         }
         else {
-            this.word.string = "很遗憾，你失败了";
+            this.onDead("很遗憾，你失败了");
         }
-        this.center.active = true;
     }
-    onDead() {
+    onDead(word:string) {
         this.center.active = true;
+        this.unscheduleAllCallbacks();
+        Controller.instance.disableInput();
         LevelManager.instance.springManager['lines'].forEach(item => item.destroy());
         LevelManager.instance.springManager['lines'] = [];
-        this.word.string = "病毒被消灭了";
+        this.word.string = word;
     }
+
 }
 

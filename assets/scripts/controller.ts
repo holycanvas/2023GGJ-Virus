@@ -47,7 +47,11 @@ export class Controller extends Component {
         }
         if (value && this._ball._ballType === BallType.virus) {
             this.currentAnimation.play();
+            if(this._isOperationPull){
+                AudioController.instance.playAbsorb();
+            }
         } else {
+            AudioController.instance.stopAbsorb();
             this.launchAnimation.pause();
             this.launchAnimation.getComponent(Sprite)!.spriteFrame = null;
             this.absorbAnimation.pause();
@@ -88,10 +92,17 @@ export class Controller extends Component {
         this.collider = this.indicator.getComponentInChildren(ConeCollider);
         this.collider.on('onTriggerStay', this.onOperation, this);
     }
-
+    disableInput(){
+        input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+        input.off(Input.EventType.KEY_UP, this.onKeyUp, this);
+        input.off(Input.EventType.MOUSE_DOWN, this.onMouseDown, this);
+        input.off(Input.EventType.MOUSE_UP, this.onMouseUp, this);
+        input.off(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
+    }
     update(deltaTime: number) {
         if (this._ball.ballType === BallType.cured) {
-            LevelManager.instance.uiManager.onDead();
+            LevelManager.instance.uiManager.onDead("病毒被消灭了");
+
             this.isOperating = false;
             return;
         }
