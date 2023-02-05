@@ -51,13 +51,20 @@ export class UIManager extends Component {
     timeup(){
         if(this.score > this.winCondition){
             this.word.string = "The virus successfully infected its host";
-            
+            this.onWin(this.word.string);
             //TODO: animtation for a better view
         }
         else {
             this.onDead("I'm sorry to say that you failed");
         }
     }
+    onWin (word: string) {
+        this.center.active = true;
+        this.unscheduleAllCallbacks();
+        Controller.instance.onDead();
+        this.word.string = word;
+    }
+
     onDead(word:string) {
         this.center.active = true;
         this.unscheduleAllCallbacks();
