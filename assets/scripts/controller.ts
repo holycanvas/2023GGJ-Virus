@@ -92,6 +92,7 @@ export class Controller extends Component {
     update(deltaTime: number) {
         if (this._ball.ballType === BallType.cured) {
             LevelManager.instance.uiManager.onDead();
+
             return;
         }
         this.mainCamera.screenToWorld(this.mousePosition, this.operationDirection);

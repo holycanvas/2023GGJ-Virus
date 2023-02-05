@@ -19,7 +19,7 @@ export class TestSpring extends Component {
     @property(CCFloat)
     public maxDistance = 5;
 
-    protected lines:Line[] = [];
+    protected lines: Line[] = [];
 
     start() {
 
@@ -46,7 +46,7 @@ export class TestSpring extends Component {
             rigidBodyB.applyForce(force.negative());
         }
         const springs = this.springs;
-            
+
         for (let i = springs.length - 1; i >= 0; i -= 2) {
             const rigidBodyA = springs[i];
             const rigidBodyB = springs[i - 1];
@@ -54,18 +54,18 @@ export class TestSpring extends Component {
             const curveRange = new CurveRange();
             curveRange.constant = 0.2
             this.lines[i].width = curveRange;
-            (this.lines[i].positions as Vec3[]) = [rigidBodyA.node.worldPosition,rigidBodyB.node.worldPosition];
+            (this.lines[i].positions as Vec3[]) = [rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition];
         }
-        this.springs.map(item=>item.node.worldPosition);
-        
+        this.springs.map(item => item.node.worldPosition);
+
     }
-    add(ballOne:RigidBody,ballTwo:RigidBody){
+    add(ballOne: RigidBody, ballTwo: RigidBody) {
         const springs = this.springs;
         const length = springs.length;
         springs.length += 2;
         springs[length] = ballOne;
         springs[length + 1] = ballTwo;
-        
+
     }
     remove(ballOne: Node) {
         const springs = this.springs;
@@ -75,8 +75,11 @@ export class TestSpring extends Component {
             if (rigidBodyA.node === ballOne || rigidBodyB.node === ballOne) {
                 js.array.fastRemoveAt(springs, i);
                 js.array.fastRemoveAt(springs, i - 1);
-                this.lines[i].enabled = false;
-                this.lines[i].destroy()
+                if (this.lines[i]) {
+                    this.lines[i].enabled = false;
+                    this.lines[i].destroy()
+
+                }
                 js.array.fastRemoveAt(this.lines, i);
             }
         }
