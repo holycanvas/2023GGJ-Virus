@@ -21,7 +21,6 @@ export class BaseAI extends Ball {
 
     update(deltaTime: number) {
         this._rigidBody.getLinearVelocity(this._velocity);
-        
         const length = this._velocity.length();
         if (length > 10) {
             this._uiTransform.width = this._originWidth * (0.5 + 5 / length);
@@ -29,8 +28,7 @@ export class BaseAI extends Ball {
             if (!this._isPlayingMotionStreak && this.motionStreakAnimation){
                 this.motionStreakAnimation.play();
                 this._isPlayingMotionStreak = true;
-                this.motionStreakAnimation.node.eulerAngles = new Vec3(this.motionStreakAnimation.node.eulerAngles.x, this.motionStreakAnimation.node.eulerAngles.y, Math.atan2(this._velocity.y, this._velocity.x) * (180 / Math.PI));
-
+                
             }
             
 
@@ -40,6 +38,8 @@ export class BaseAI extends Ball {
                 this.motionStreakAnimation.node.getComponent(Sprite).spriteFrame = null;
             }
         }
+        this.motionStreakAnimation.node.eulerAngles = new Vec3(this.motionStreakAnimation.node.eulerAngles.x, this.motionStreakAnimation.node.eulerAngles.y, Math.atan2(this._velocity.y, this._velocity.x) * (180 / Math.PI));
+
     }
 }
 
