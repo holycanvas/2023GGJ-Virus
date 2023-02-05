@@ -1,4 +1,4 @@
-import { _decorator, Component, RigidBody, Enum, Vec3, math, Collider, ICollisionEvent, js, Animation, Prefab, instantiate } from 'cc';
+import { _decorator, Component, RigidBody, Enum, Vec3, math, Collider, ICollisionEvent, js, Animation, Prefab, instantiate, Quat } from 'cc';
 import { AudioController } from './AudioController';
 import { LevelManager } from './LevelManager';
 const { ccclass, property, requireComponent, type } = _decorator;
@@ -103,7 +103,7 @@ export class Ball extends Component {
     update(deltaTime: number) {
         this._rigidBody.getLinearVelocity(this._velocity);
         if(this.motionStreakAnimation){
-            this.motionStreakAnimation.node.eulerAngles = new Vec3(this.node.eulerAngles.x, this.node.eulerAngles.y, Math.atan2(this._velocity.y, this._velocity.x) * (180 / Math.PI));
+            this.motionStreakAnimation.node.worldRotation = Quat.fromAngleZ(new Quat, Math.atan2(this._velocity.y, this._velocity.x) * (180 / Math.PI));
         }
     }
 }
