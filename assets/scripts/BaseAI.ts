@@ -20,7 +20,7 @@ export class BaseAI extends Ball {
         this._originWidth = this._uiTransform.width;
         this._originHeight = this._uiTransform.height;
         this.scheduleOnce(() => {
-            if (this._ballType === BallType.normal) {
+            if (this._ballType === BallType.normal || this._ballType === BallType.defender) {
                 this.animation?.play()   
             }
         }, math.randomRange(0, 10));
