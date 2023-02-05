@@ -61,7 +61,7 @@ export class UIManager extends Component {
     onWin (word: string) {
         this.center.active = true;
         this.unscheduleAllCallbacks();
-        Controller.instance.onDead();
+        Controller.instance.onWin();
         this.word.string = word;
     }
 

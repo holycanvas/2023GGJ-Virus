@@ -118,6 +118,15 @@ export class Controller extends Component {
         this.getComponent(Sprite).grayscale = true;
     }
 
+    onWin () {
+        this.isOperating = false;
+        input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+        input.off(Input.EventType.KEY_UP, this.onKeyUp, this);
+        input.off(Input.EventType.MOUSE_DOWN, this.onMouseDown, this);
+        input.off(Input.EventType.MOUSE_UP, this.onMouseUp, this);
+        input.off(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
+    }
+
     addBonus (type: BonusType) {
         if (type === BonusType.SPEED) {
             this.speedBonusTime = 8;
