@@ -16,9 +16,11 @@ export class cameraView extends Component {
         renderTex.reset({
             width: 168,
             height: 128,
+            
         });
-        this.camera.targetTexture = renderTex;
         
+        this.camera.targetTexture = renderTex;
+        this.sprite.color.set(this.sprite.color.r, this.sprite.color.g, this.sprite.color.b , 100);
         sp.texture = renderTex;
         sp.flipUVY = true;
         this.sprite.spriteFrame = sp;
