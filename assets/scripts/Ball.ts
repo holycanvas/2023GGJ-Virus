@@ -81,6 +81,7 @@ export class Ball extends Component {
 
         } else if (this.ballType === BallType.defender && otherBall.ballType === BallType.virus) {
             otherBall.ballType = BallType.cured;
+            otherBall._rigidBody.setGroup(1 << 5);
             LevelManager.instance.springManager.remove(otherBall.node)
             LevelManager.instance.affectedNum--;
         } else if (this.ballType === BallType.virus && otherBall.ballType === BallType.virus) {

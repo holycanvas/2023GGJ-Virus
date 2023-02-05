@@ -19,6 +19,10 @@
       {
         "index": 4,
         "name": "Edge"
+      },
+      {
+        "index": 5,
+        "name": "Cured"
       }
     ],
     "collisionMatrix": {

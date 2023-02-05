@@ -634,7 +634,7 @@
     "_enabled": true,
     "__prefab": null,
     "springs": [],
-    "springStrength": 10,
+    "springStrength": 7,
     "max": 2,
     "min": 1,
     "maxDistance": 5,
