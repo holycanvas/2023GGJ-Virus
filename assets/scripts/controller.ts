@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics, Prefab, instantiate } from 'cc';
+import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics, Prefab, instantiate, Quat } from 'cc';
 import { AudioController } from './AudioController';
 import { Ball, BallType } from './Ball';
 import { Bonus, BonusType } from './Bonus';
@@ -176,23 +176,48 @@ export class Controller extends Component {
             this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction.normalize(), this.speed * deltaTime));
         }
         this._accumulateTime += deltaTime;
-        if (this.isOperating && !this.isOperationPull && this.attackBonusTime < 0 && this._accumulateTime > this.pushInterval) {
-            const ray = new geometry.Ray(this.node.worldPosition.x, this.node.worldPosition.y, this.node.worldPosition.z,
-                this.operationDirection.x, this.operationDirection.y, this.operationDirection.z);
-            if (physics.PhysicsSystem.instance.raycast(ray, 1 << 0, this.pushLength)) {
-                const result = physics.PhysicsSystem.instance.raycastResults;
-                for (let i = 0; i < result.length; i++) {
-                    const target = result[i];
-                    const ball = target.collider.getComponent(Ball);
-                    if (ball && ball.ballType === BallType.virus) {
-                        ball._rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
+        if (this.isOperating && !this.isOperationPull && this._accumulateTime > this.pushInterval) {
+            if (this.attackBonusTime > 0) {
+                for (let i = 0; i < 3; i++) {
+                    const rot = Quat.fromAngleZ(new Quat, -15 + i * 15);
+                    const dir = Vec3.transformQuat(new Vec3, this.operationDirection, rot);
+                    const ray = new geometry.Ray(this.node.worldPosition.x, this.node.worldPosition.y, this.node.worldPosition.z,
+                        dir.x, dir.y, dir.z);
+                    if (physics.PhysicsSystem.instance.raycast(ray, 1 << 0, this.pushLength)) {
+                        const result = physics.PhysicsSystem.instance.raycastResults;
+                        for (let i = 0; i < result.length; i++) {
+                            const target = result[i];
+                            const ball = target.collider.getComponent(Ball);
+                            if (ball && ball.ballType === BallType.virus) {
+                                ball._rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), ray.d, this.pushStrength));
+                            }
+                        }
+                    }
+                    const node = instantiate(this.particleSystem);
+                    this.node.addChild(node);
+                    node.eulerAngles = new Vec3(node.eulerAngles.x, node.eulerAngles.y, -15 + i * 15)
+                    AudioController.instance.playShoot();
+                }
+            } else {
+                const ray = new geometry.Ray(this.node.worldPosition.x, this.node.worldPosition.y, this.node.worldPosition.z,
+                    this.operationDirection.x, this.operationDirection.y, this.operationDirection.z);
+                if (physics.PhysicsSystem.instance.raycast(ray, 1 << 0, this.pushLength)) {
+                    const result = physics.PhysicsSystem.instance.raycastResults;
+                    for (let i = 0; i < result.length; i++) {
+                        const target = result[i];
+                        const ball = target.collider.getComponent(Ball);
+                        if (ball && ball.ballType === BallType.virus) {
+                            ball._rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
+                        }
                     }
                 }
+                const node = instantiate(this.particleSystem);
+                this.node.addChild(node);
+                AudioController.instance.playShoot();
             }
-            AudioController.instance.playShoot();
+            
             this._accumulateTime = 0;
-            const node = instantiate(this.particleSystem);
-            this.node.addChild(node);
+            
         }
     }
 
@@ -257,17 +282,7 @@ export class Controller extends Component {
             direction.normalize();
             event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
             AudioController.instance.playAbsorb();
-        } else if (this.attackBonusTime > 0) {
-            const ball = event.otherCollider.getComponent(Ball);
-            if (!ball || ball.ballType !== BallType.virus) return;
-            Vec3.subtract(direction, event.otherCollider.node.worldPosition, event.selfCollider.node.worldPosition);
-            direction.z = 0;
-            const length = Math.max(direction.length(), 1);
-            direction.normalize();
-            ball._rigidBody.applyImpulse(Vec3.multiplyScalar(direction, direction, this.pushStrength / length));
-            // AudioController.instance.playShoot();
         }
-
     }
 
     onMouseMove(event: EventMouse) {

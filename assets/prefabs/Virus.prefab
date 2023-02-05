@@ -694,11 +694,12 @@
     "absorbAnimation": {
       "__id__": 23
     },
+    "idleAnimation": null,
     "pushStrength": 20,
     "pushLength": 5,
     "pushInterval": 0.2,
     "particleSystem": {
-      "__uuid__": "059c6ff1-090b-43fa-8a4c-465be46c6cee",
+      "__uuid__": "502f6553-69b4-44d4-8387-c16481bebe5e",
       "__expectedType__": "cc.Prefab"
     },
     "_id": ""
