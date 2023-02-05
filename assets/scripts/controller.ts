@@ -1,4 +1,5 @@
-import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics } from 'cc';
+import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics, Prefab, instantiate } from 'cc';
+import { AudioController } from './AudioController';
 import { Ball, BallType } from './Ball';
 import { LevelManager } from './LevelManager';
 const { ccclass, property } = _decorator;
@@ -63,8 +64,13 @@ export class Controller extends Component {
     public pushStrength = 5;
     @property(CCFloat)
     public pushLength = 5;
+    @property(CCFloat)
+    public pushInterval = 0.2;
     private _moveState = new Vec4();
     private _ball: Ball | null = null;
+    private _accumulateTime = 0;
+    @property(Prefab)
+    public particleSystem: Prefab | null = null;
     
     public static instance:Controller;
     onLoad(){
@@ -92,22 +98,28 @@ export class Controller extends Component {
         this.operationDirection.subtract(this.node.worldPosition);
         this.operationDirection.z = 0;
         this.operationDirection.normalize();
-        this.indicator.eulerAngles = new Vec3(this.indicator.eulerAngles.x, this.indicator.eulerAngles.y, Math.atan2(this.operationDirection.y, this.operationDirection.x) *
+        this.node.eulerAngles = new Vec3(this.indicator.eulerAngles.x, this.indicator.eulerAngles.y, Math.atan2(this.operationDirection.y, this.operationDirection.x) *
             (180 / Math.PI));
         this.direction.y = this._moveState.x + this._moveState.y;
         this.direction.x = this._moveState.z + this._moveState.w;
         if (!this.direction.equals(Vec3.ZERO)) {
             this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.direction.normalize(), this.speed * deltaTime));
         }
-        if (this.isOperating && !this.isOperationPull) {
+        this._accumulateTime += deltaTime;
+        if (this.isOperating && !this.isOperationPull && this._accumulateTime > this.pushInterval) {
             const ray = new geometry.Ray(this.node.worldPosition.x, this.node.worldPosition.y, this.node.worldPosition.z,
                 this.operationDirection.x, this.operationDirection.y, this.operationDirection.z);
-            physics.PhysicsSystem.instance.raycast(ray, 1 << 0, this.pushLength);
-            const result = physics.PhysicsSystem.instance.raycastResults;
-            for (let i = 0; i < result.length; i++) {
-                const target = result[i];
-                target.collider.getComponent(RigidBody).applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
+            if (physics.PhysicsSystem.instance.raycast(ray, 1 << 0, this.pushLength)) {
+                const result = physics.PhysicsSystem.instance.raycastResults;
+                for (let i = 0; i < result.length; i++) {
+                    const target = result[i];
+                    target.collider.getComponent(RigidBody).applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
+                }
             }
+            AudioController.instance.playShoot();
+            this._accumulateTime = 0;
+            const node = instantiate(this.particleSystem);
+                this.node.addChild(node);
         }
     }
 
@@ -171,6 +183,7 @@ export class Controller extends Component {
             const length = Math.max(direction.length(), 1);
             direction.normalize();
             event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
+            AudioController.instance.playAbsorb();
         }
     }
 

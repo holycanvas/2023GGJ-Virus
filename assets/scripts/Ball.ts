@@ -1,4 +1,5 @@
 import { _decorator, Component, RigidBody, Enum, Vec3, math, Collider, ICollisionEvent, js, Animation, Prefab, instantiate } from 'cc';
+import { AudioController } from './AudioController';
 import { LevelManager } from './LevelManager';
 const { ccclass, property, requireComponent, type } = _decorator;
 export enum BallType {
@@ -60,6 +61,7 @@ export class Ball extends Component {
             node.destroy();
         })
         animation.play('smog');
+        AudioController.instance.playCollide();
     }
     onCollisionEnter(event: ICollisionEvent) {
         const otherBall = event.otherCollider.getComponent(Ball);

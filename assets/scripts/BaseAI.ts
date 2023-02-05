@@ -11,7 +11,7 @@ export class BaseAI extends Ball {
         this.move();
     }
     move() {
-        this._rigidBody.setLinearVelocity(this._speed);
+        // this._rigidBody.setLinearVelocity(this._speed);
     }
     update(deltaTime: number) {
 
