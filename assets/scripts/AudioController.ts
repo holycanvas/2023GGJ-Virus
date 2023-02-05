@@ -20,9 +20,11 @@ export class AudioController extends Component {
         this.audioSource.playOneShot(this.shoot);
     }
     playAbsorb(){
-        this.audioSource.clip = this.absorb;
         this.audioSource.loop = true;
         this.audioSource.play();
+    }
+    stopAbsorb(){
+        this.audioSource.stop();
     }
     playCollide(){
         this.audioSource.playOneShot(this.collide);

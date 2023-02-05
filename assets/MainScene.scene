@@ -727,10 +727,13 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_clip": null,
-    "_loop": false,
-    "_playOnAwake": true,
-    "_volume": 1,
+    "_clip": {
+      "__uuid__": "d240f4f1-41a8-4522-ba86-6ef715c1bec8",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "_loop": true,
+    "_playOnAwake": false,
+    "_volume": 0,
     "_id": "d41MAltEpGV4ITsU3mz1Dz"
   },
   {
