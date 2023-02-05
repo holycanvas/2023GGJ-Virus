@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Prefab, instantiate, find, Vec3, Vec2, CCInteger, Material, RigidBody, js } from 'cc';
+import { _decorator, Component, Node, Prefab, instantiate, find, Vec3, Vec2, CCInteger, Material, RigidBody, js, CCFloat } from 'cc';
 import { BorderController } from './BorderController';
 import { Controller } from './controller';
 import { TestSpring } from './TestSpring';
@@ -45,6 +45,8 @@ export class LevelManager extends Component {
     public defenderCellContainer:Node;
     public affectedNum:number = 0;
 
+    private _accumulatedTime = 0;
+
 
     @property(Prefab)
     upborder: Prefab;
@@ -54,6 +56,12 @@ export class LevelManager extends Component {
     leftborder: Prefab;
     @property(Prefab)
     rightborder: Prefab;
+
+    @property(Prefab)
+    bonusPrefab: Prefab;
+
+    @property(CCFloat)
+    bonusGenerateInterval = 5;
 
     generateBorders(){
         const scene = this.node.scene;
@@ -107,10 +115,25 @@ export class LevelManager extends Component {
         for (let i = 0; i < this.defenderNum; i++) {
             this.generateDefenderCell();
         }
+
+        for (let i = 0; i < 10; i++) {
+            this.generateBonus();
+        }
+    }
+
+    generateBonus () {
+        const node = instantiate(this.bonusPrefab);
+        this.normalCellContainer.addChild(node);
+        node.position = new Vec3(Math.random() * this.normalCellRange.x - this.normalCellRange.x / 2,
+        Math.random() * this.normalCellRange.y - this.normalCellRange.y / 2, 0);
     }
 
     update(deltaTime: number) {
-
+        this._accumulatedTime += deltaTime;
+        if (this._accumulatedTime > this.bonusGenerateInterval) {
+            this.generateBonus();
+            this._accumulatedTime -= this.bonusGenerateInterval;
+        }
     }
 
 

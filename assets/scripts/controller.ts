@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, input, Input, EventKeyboard, KeyCode, geometry, Vec3, Vec2, Sprite, RigidBody, CCFloat, EventMouse, Camera, find, Collider, ITriggerEvent, Vec4, Animation, ConeCollider, PhysicsRayResult, physics, Prefab, instantiate } from 'cc';
 import { AudioController } from './AudioController';
 import { Ball, BallType } from './Ball';
+import { Bonus, BonusType } from './Bonus';
 import { LevelManager } from './LevelManager';
 const { ccclass, property } = _decorator;
 
@@ -80,10 +81,16 @@ export class Controller extends Component {
     public particleSystem: Prefab | null = null;
     
     public static instance:Controller;
+    public attackBonusTime = 0;
+    public speedBonusTime = 0;
+    public invincibleBonusTime = 0;
+    private _originStrength = 0;
+    private _originSpeed = 0;
     onLoad(){
         Controller.instance = this;
         this._ball = this.getComponent(Ball);
     }
+
     start() {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
@@ -94,6 +101,8 @@ export class Controller extends Component {
         this.mainCamera = find('Main Camera').getComponent(Camera);
         this.collider = this.indicator.getComponentInChildren(ConeCollider);
         this.collider.on('onTriggerStay', this.onOperation, this);
+        this._originStrength = this.pushStrength;
+        this._originSpeed = this.speed;
     }
     onDead(){
         this.isOperating = false;
@@ -106,20 +115,50 @@ export class Controller extends Component {
         input.off(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
         this.getComponent(Sprite).grayscale = true;
     }
+
+    addBonus (type: BonusType) {
+        if (type === BonusType.SPEED) {
+            this.speedBonusTime = 8;
+        } else if (type === BonusType.POWER) {
+            this.attackBonusTime = 8;
+        } else {
+            this.invincibleBonusTime = 8;
+        }
+    }
+
     update(deltaTime: number) {
         if (this._ball.ballType === BallType.cured) {
             LevelManager.instance.uiManager.onDead("病毒被消灭了");
 
             return;
         }
-        
+        this.attackBonusTime -= deltaTime;
+        this.speedBonusTime -= deltaTime;
+        this.invincibleBonusTime -= deltaTime;
+        if (this.attackBonusTime > 0) {
+            this.pushStrength = this._originStrength * 3;
+        } else {
+            this.pushStrength = this._originStrength;
+        }
+
+        if (this.speedBonusTime > 0) {
+            this.speed = 3 * this._originSpeed;
+        } else {
+            this.speed = this._originSpeed;
+        }
+
+        if (this.invincibleBonusTime > 0) {
+            this._ball._rigidBody.setGroup(1 << 6);
+        } else {
+            this._ball._rigidBody.setGroup(1 << 1);
+        }
         this.mainCamera.screenToWorld(this.mousePosition, this.operationDirection);
         this.operationDirection.subtract(this.node.worldPosition);
         this.operationDirection.z = 0;
         this.operationDirection.normalize();
         if (this._isOperating && this._isOperationPull) {
-            this._ball._rigidBody.mass = 20;
-            this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, 3));
+            this._ball._rigidBody.mass = 10;
+            this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, 1.5));
         } else {
             this._ball._rigidBody.mass = 1;
         }
