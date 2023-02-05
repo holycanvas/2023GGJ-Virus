@@ -19,7 +19,7 @@ export class Ball extends Component {
     @property(Animation)
     public animation?: Animation;
     @property(Prefab)
-    smog:Prefab;
+    smog: Prefab;
     @property
     _ballType: BallType = BallType.normal;
     @property({ type: Enum(BallType) })
@@ -50,13 +50,13 @@ export class Ball extends Component {
         this._collider.on('onCollisionStay', this.onCollisionStay, this)
         this._collider.on('onCollisionExit', this.onCollisionExit, this)
     }
-    playSmog(position: Vec3){
+    playSmog(position: Vec3) {
         // the position in is the world position
         let node = instantiate(this.smog);
         LevelManager.instance.normalCellContainer.addChild(node);
         node.setPosition(position);
         let animation = node.getComponent(Animation);
-        animation.once(Animation.EventType.FINISHED, ()=>{
+        animation.once(Animation.EventType.FINISHED, () => {
             console.log('play done');
             node.destroy();
         })
@@ -70,18 +70,18 @@ export class Ball extends Component {
         }
         if (this.ballType === BallType.virus && otherBall.ballType === BallType.normal) {
             otherBall.ballType = BallType.virus;
-            LevelManager.instance.springManager.addSpring(this._rigidBody, otherBall._rigidBody);
+            LevelManager.instance.springManager.add(this._rigidBody, otherBall._rigidBody);
             let collisionPoint = new Vec3();
             collisionPoint.add(this.node.worldPosition)
                 .add(otherBall.node.worldPosition)
-                .divide3f(2,2,2);
+                .divide3f(2, 2, 2);
             this.playSmog(collisionPoint);
 
             LevelManager.instance.affectedNum++;
 
         } else if (this.ballType === BallType.defender && otherBall.ballType === BallType.virus) {
             otherBall.ballType = BallType.cured;
-            LevelManager.instance.springManager.removeSpring(this._rigidBody, otherBall._rigidBody);
+            LevelManager.instance.springManager.remove(otherBall.node)
             LevelManager.instance.affectedNum--;
         }
 

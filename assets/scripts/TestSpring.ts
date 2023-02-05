@@ -1,4 +1,5 @@
-import { _decorator, Component, Node, Collider, CCFloat, RigidBody, Vec3, js, clamp } from 'cc';
+import { _decorator, Component, Node, Collider, CCFloat, RigidBody, Vec3, js, clamp, Line, CurveRange } from 'cc';
+import { Ball } from './Ball';
 const { ccclass, property } = _decorator;
 
 @ccclass('TestSpring')
@@ -43,26 +44,29 @@ export class TestSpring extends Component {
             rigidBodyB.applyForce(force.negative());
         }
     }
-
-
-    addSpring (rigidBodyA: RigidBody, rigidBodyB: RigidBody) {
+    add(ballOne:RigidBody,ballTwo:RigidBody){
         const springs = this.springs;
         const length = springs.length;
         springs.length += 2;
-        springs[length] = rigidBodyA;
-        springs[length + 1] = rigidBodyB;
+        springs[length] = ballOne;
+        springs[length + 1] = ballTwo;
+        const line = ballTwo.getComponent(Line) || ballOne.getComponent(Line);
+        (line.positions as unknown as Vec3[]).push(ballTwo.node.worldPosition,ballOne.node.worldPosition);
+        
     }
-
-    removeSpring (rigidBodyA: RigidBody, rigidBodyB: RigidBody) {
+    remove(ballOne: Node) {
         const springs = this.springs;
         for (let i = springs.length - 1; i >= 0; i -= 2) {
             const rigidBodyA = springs[i];
             const rigidBodyB = springs[i - 1];
-            if (rigidBodyA.node === rigidBodyA.node || rigidBodyB.node === rigidBodyB.node) {
+            if (rigidBodyA.node === ballOne || rigidBodyB.node === ballOne) {
                 js.array.fastRemoveAt(springs, i);
                 js.array.fastRemoveAt(springs, i - 1);
             }
+            // 来一次超级浪费性能的遍历
+            Ball.balls.forEach(item=>(item.getComponent(Line)?.positions as unknown as Vec3[])?.filter(item=>item !== ballOne.position))
         }
+
     }
 }
 
