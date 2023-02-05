@@ -83,7 +83,7 @@
     },
     "_group": 8,
     "_type": 1,
-    "_mass": 0.2,
+    "_mass": 1.2,
     "_allowSleep": false,
     "_linearDamping": 0.1,
     "_angularDamping": 0.1,
