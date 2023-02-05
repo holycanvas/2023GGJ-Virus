@@ -60,7 +60,7 @@ export class UIManager extends Component {
     onDead(word:string) {
         this.center.active = true;
         this.unscheduleAllCallbacks();
-        Controller.instance.disableInput();
+        Controller.instance.onDead();
         LevelManager.instance.springManager['lines'].forEach(item => item.destroy());
         LevelManager.instance.springManager['lines'] = [];
         this.word.string = word;

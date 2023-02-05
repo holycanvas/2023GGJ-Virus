@@ -63,7 +63,9 @@ export class Controller extends Component {
     public launchAnimation: Animation | null = null;
     @property(Animation)
     public absorbAnimation: Animation | null = null;
-
+    @property(Animation)
+    public idleAnimation: Animation | null = null;
+    
     @property(CCFloat)
     public pushStrength = 5;
     @property(CCFloat)
@@ -92,18 +94,21 @@ export class Controller extends Component {
         this.collider = this.indicator.getComponentInChildren(ConeCollider);
         this.collider.on('onTriggerStay', this.onOperation, this);
     }
-    disableInput(){
+    onDead(){
+        this.isOperating = false;
+        this.idleAnimation?.pause();
+        
         input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.off(Input.EventType.KEY_UP, this.onKeyUp, this);
         input.off(Input.EventType.MOUSE_DOWN, this.onMouseDown, this);
         input.off(Input.EventType.MOUSE_UP, this.onMouseUp, this);
         input.off(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
+        this.getComponent(Sprite).grayscale = true;
     }
     update(deltaTime: number) {
         if (this._ball.ballType === BallType.cured) {
             LevelManager.instance.uiManager.onDead("病毒被消灭了");
 
-            this.isOperating = false;
             return;
         }
         this.mainCamera.screenToWorld(this.mousePosition, this.operationDirection);

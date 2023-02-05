@@ -55,7 +55,7 @@ export class TestSpring extends Component {
         }
         const springs = this.springs;
         if (this.lines.length > springs.length / 2) {
-            for (let i = springs.length / 2 - 1; i < this.lines.length; i++) {
+            for (let i = springs.length / 2; i < this.lines.length; i++) {
                 this.lines[i].active = false;
             }
         } else {
