@@ -16,6 +16,7 @@ export class UIManager extends Component {
     private _time = 60;
     @property(Label)
     public word: Label;
+
     start() {
         this.schedule(()=>{
             this._time--;
@@ -26,7 +27,8 @@ export class UIManager extends Component {
             }
             if(this._time == 0){
                 // GAME OVER
-                this.timeup()
+                this.timeup();
+                this.unscheduleAllCallbacks();
             }
         } ,1);
     }
