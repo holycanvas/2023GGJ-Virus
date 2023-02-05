@@ -180,7 +180,7 @@ export class Controller extends Component {
                 for (let i = 0; i < result.length; i++) {
                     const target = result[i];
                     const ball = target.collider.getComponent(Ball);
-                    if (ball.ballType === BallType.virus) {
+                    if (ball && ball.ballType === BallType.virus) {
                         ball._rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, this.pushStrength));
                     }
                 }
