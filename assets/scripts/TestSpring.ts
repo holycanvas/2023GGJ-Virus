@@ -43,5 +43,26 @@ export class TestSpring extends Component {
             rigidBodyB.applyForce(force.negative());
         }
     }
+
+
+    addSpring (rigidBodyA: RigidBody, rigidBodyB: RigidBody) {
+        const springs = this.springs;
+        const length = springs.length;
+        springs.length += 2;
+        springs[length] = rigidBodyA;
+        springs[length + 1] = rigidBodyB;
+    }
+
+    removeSpring (rigidBodyA: RigidBody, rigidBodyB: RigidBody) {
+        const springs = this.springs;
+        for (let i = springs.length - 1; i >= 0; i -= 2) {
+            const rigidBodyA = springs[i];
+            const rigidBodyB = springs[i - 1];
+            if (rigidBodyA.node === rigidBodyA.node || rigidBodyB.node === rigidBodyB.node) {
+                js.array.fastRemoveAt(springs, i);
+                js.array.fastRemoveAt(springs, i - 1);
+            }
+        }
+    }
 }
 

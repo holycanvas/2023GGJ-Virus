@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Prefab, instantiate, find, Vec3, Vec2, CCInteger, Material } from 'cc';
+import { _decorator, Component, Node, Prefab, instantiate, find, Vec3, Vec2, CCInteger, Material, RigidBody, js } from 'cc';
 import { TestSpring } from './TestSpring';
 import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;

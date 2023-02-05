@@ -14,7 +14,7 @@ export class cameraView extends Component {
         const sp = new SpriteFrame();
         const renderTex = this.renderTex = new RenderTexture();
         renderTex.reset({
-            width: 192,
+            width: 168,
             height: 128,
         });
         this.camera.targetTexture = renderTex;

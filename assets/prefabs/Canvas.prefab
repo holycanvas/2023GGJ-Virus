@@ -1457,11 +1457,11 @@
     "__prefab": {
       "__id__": 74
     },
-    "_projection": 1,
+    "_projection": 0,
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 10,
+    "_orthoHeight": 32.5,
     "_near": 1,
     "_far": 1000,
     "_color": {
