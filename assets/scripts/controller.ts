@@ -114,10 +114,17 @@ export class Controller extends Component {
 
             return;
         }
+        
         this.mainCamera.screenToWorld(this.mousePosition, this.operationDirection);
         this.operationDirection.subtract(this.node.worldPosition);
         this.operationDirection.z = 0;
         this.operationDirection.normalize();
+        if (this._isOperating && this._isOperationPull) {
+            this._ball._rigidBody.mass = 20;
+            this.rigidBody.applyImpulse(Vec3.multiplyScalar(new Vec3(), this.operationDirection, 3));
+        } else {
+            this._ball._rigidBody.mass = 1;
+        }
         this.node.eulerAngles = new Vec3(this.indicator.eulerAngles.x, this.indicator.eulerAngles.y, Math.atan2(this.operationDirection.y, this.operationDirection.x) *
             (180 / Math.PI));
         this.direction.y = this._moveState.x + this._moveState.y;
@@ -201,7 +208,7 @@ export class Controller extends Component {
         if (!this.isOperating) return;
         const direction = new Vec3();
         if (this.isOperationPull) {
-            Vec3.subtract(direction, event.selfCollider.node.worldPosition, event.otherCollider.node.worldPosition);
+            Vec3.subtract(direction, this.node.worldPosition, event.otherCollider.node.worldPosition);
             direction.z = 0;
             const length = Math.max(direction.length(), 1);
             direction.normalize();

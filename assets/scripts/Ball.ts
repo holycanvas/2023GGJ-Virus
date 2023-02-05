@@ -39,7 +39,7 @@ export class Ball extends Component {
     get ballType() {
         return this._ballType;
     }
-    protected _rigidBody!: RigidBody;
+    public _rigidBody!: RigidBody;
     protected _collider!: Collider;
     start() {
         Ball.balls.push(this);
