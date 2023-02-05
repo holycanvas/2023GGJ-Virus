@@ -125,6 +125,7 @@
       "__expectedType__": "cc.Prefab"
     },
     "_ballType": 2,
+    "emotion": null,
     "searchRange": 100,
     "chaseThreshold": 100,
     "chaseSpeed": 10,
@@ -147,7 +148,7 @@
     "__prefab": {
       "__id__": 7
     },
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_clips": [
       {
         "__uuid__": "39394489-db4d-4f7e-90bc-343f43911216",
