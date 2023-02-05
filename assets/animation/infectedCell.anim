@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.AnimationClip",
-    "_name": "virus",
+    "_name": "infectedCell",
     "_objFlags": 0,
     "__editorExtras__": {
       "embeddedPlayerGroups": []
@@ -9,7 +9,7 @@
     "_native": "",
     "sample": 10,
     "speed": 1,
-    "wrapMode": 1,
+    "wrapMode": 2,
     "enableTrsBlending": false,
     "_duration": 1,
     "_hash": 500763545,

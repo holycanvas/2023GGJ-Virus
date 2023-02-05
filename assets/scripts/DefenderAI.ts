@@ -29,39 +29,38 @@ export class DefenderAI extends BaseAI {
     start() {
         super.start();
     }
-    needCure(){
-        if(LevelManager.instance.affectedNum/LevelManager.instance.normalCellNum>0.2){
+    needCure() {
+        if (LevelManager.instance.affectedNum / LevelManager.instance.normalCellNum > 0.2) {
             return true;
         }
         return false;
     }
 
     update(deltaTime: number) {
-        if(this.needCure()){
+        if (this.needCure()) {
             //需要尽快修复，开启威力增强模式。
-            if(this.chaseSpeed<this.maxChaseSpeed){
-                this.chaseSpeed+=this.innerAcceleration;
+            if (this.chaseSpeed < this.maxChaseSpeed) {
+                this.chaseSpeed += this.innerAcceleration;
             }
-            
-            if(this._rigidBody.mass < this.massThreshold){
-                this._rigidBody.mass+=this.innerMassAcc;
+
+            if (this._rigidBody.mass < this.massThreshold) {
+                this._rigidBody.mass += this.innerMassAcc;
             }
-            if(this.searchRange < this.maxSearchRange) {
-                this.searchRange+=this._searchRangeAcc;
+            if (this.searchRange < this.maxSearchRange) {
+                this.searchRange += this._searchRangeAcc;
             }
-            
+
         }
         const closeBall = Ball.balls.find(item => item.ballType === BallType.virus && Vec3.distance(item.node.worldPosition, this.node.worldPosition) <= this.searchRange)
         if (closeBall) {
 
             //记录十帧前玩家的位置
-            if (Vec3.distance(Controller.instance.node.worldPosition, this.node.worldPosition) <= this.searchRange) {
+            if (!Controller.instance.isDead && Vec3.distance(Controller.instance.node.worldPosition, this.node.worldPosition) <= this.searchRange) {
                 if (this._time === 0) {
                     this.lastPoint.set(Controller.instance.node.worldPosition);
                 }
                 this._time++;
             } else {
-
                 if (this._time === 0) {
                     this.lastPoint.set(closeBall.node.worldPosition);
                 }
@@ -75,7 +74,7 @@ export class DefenderAI extends BaseAI {
         }
 
         if (this._time > this.chaseThreshold) {
-            const value = Vec3.subtract(DefenderAI._tempVec, Controller.instance.node.worldPosition, this.node.worldPosition).normalize().multiplyScalar(this.chaseSpeed * deltaTime);
+            const value = Vec3.subtract(DefenderAI._tempVec, this.lastPoint, this.node.worldPosition).normalize().multiplyScalar(this.chaseSpeed * deltaTime);
             this._rigidBody.applyImpulse(value);
             this._time = 0;
         }

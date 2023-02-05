@@ -35,12 +35,11 @@ export class UIManager extends Component {
 
     update(deltaTime: number) {
         this.score = LevelManager.instance.affectedNum * 100 / LevelManager.instance.normalCellNum;
-        if(this.center.active){
-            return;
+        this.scores[0].string = this.score.toString();
+        if(!this.center.active){
+            this.scores[1].string = this.score.toString();
         }
-        for (let i = 0; i < this.scores.length; i++) {
-            this.scores[i].string = this.score.toString();
-        }
+        
     }
 
     onRestart() {
@@ -49,12 +48,12 @@ export class UIManager extends Component {
     }
     timeup(){
         if(this.score>60){
-            this.word.string = "病毒成功感染了宿主";
+            this.word.string = "The virus successfully infected its host";
             
             //TODO: animtation for a better view
         }
         else {
-            this.onDead("很遗憾，你失败了");
+            this.onDead("I'm sorry to say that you failed");
         }
     }
     onDead(word:string) {

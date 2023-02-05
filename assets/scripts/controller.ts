@@ -39,7 +39,7 @@ export class Controller extends Component {
     public operationStrength = 100;
     private _isOperating: boolean = false;
     public set isOperating(value: boolean) {
-        if(this._isOperating === value){
+        if (this._isOperating === value) {
             return;
         }
         this._isOperating = value;
@@ -48,7 +48,7 @@ export class Controller extends Component {
         }
         if (value && this._ball._ballType === BallType.virus) {
             this.currentAnimation.play();
-            if(this._isOperationPull){
+            if (this._isOperationPull) {
                 AudioController.instance.playAbsorb();
             }
         } else {
@@ -67,7 +67,7 @@ export class Controller extends Component {
     public absorbAnimation: Animation | null = null;
     @property(Animation)
     public idleAnimation: Animation | null = null;
-    
+
     @property(CCFloat)
     public pushStrength = 5;
     @property(CCFloat)
@@ -86,7 +86,10 @@ export class Controller extends Component {
     public invincibleBonusTime = 0;
     private _originStrength = 0;
     private _originSpeed = 0;
-    onLoad(){
+    public get isDead():boolean {
+        return this._ball._ballType !== BallType.virus;
+    };
+    onLoad() {
         Controller.instance = this;
         this._ball = this.getComponent(Ball);
     }
@@ -104,10 +107,9 @@ export class Controller extends Component {
         this._originStrength = this.pushStrength;
         this._originSpeed = this.speed;
     }
-    onDead(){
+    onDead() {
         this.isOperating = false;
         this.idleAnimation?.pause();
-        
         input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.off(Input.EventType.KEY_UP, this.onKeyUp, this);
         input.off(Input.EventType.MOUSE_DOWN, this.onMouseDown, this);
@@ -128,7 +130,7 @@ export class Controller extends Component {
 
     update(deltaTime: number) {
         if (this._ball.ballType === BallType.cured) {
-            LevelManager.instance.uiManager.onDead("病毒被消灭了");
+            LevelManager.instance.uiManager.onDead("The root cause of the virus was eliminated");
 
             return;
         }
@@ -186,7 +188,7 @@ export class Controller extends Component {
             AudioController.instance.playShoot();
             this._accumulateTime = 0;
             const node = instantiate(this.particleSystem);
-                this.node.addChild(node);
+            this.node.addChild(node);
         }
     }
 
@@ -261,7 +263,7 @@ export class Controller extends Component {
         //     ball._rigidBody.applyImpulse(Vec3.multiplyScalar(direction, direction, this.pushStrength / length));
         //     // AudioController.instance.playShoot();
         // }
-        
+
     }
 
     onMouseMove(event: EventMouse) {
