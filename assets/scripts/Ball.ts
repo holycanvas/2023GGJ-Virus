@@ -31,10 +31,7 @@ export class Ball extends Component {
                     this.animation?.play('infectedCell');
                 })
             } else if (value === BallType.cured) {
-                this.animation?.play('swallower');
-                this.animation?.once(Animation.EventType.FINISHED, () => {
-                    this.animation?.play('curedCell');
-                })
+                this.animation?.play('curedCell');
             }
         }
     };
