@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Collider, CCFloat, RigidBody, Vec3, js, clamp, Line, CurveRange } from 'cc';
+import { _decorator, Component, Node, Collider, CCFloat, RigidBody, Vec3, js, clamp, Line, CurveRange, Prefab, instantiate, UITransform } from 'cc';
 import { Ball } from './Ball';
 const { ccclass, property } = _decorator;
 
@@ -19,12 +19,16 @@ export class TestSpring extends Component {
     @property(CCFloat)
     public maxDistance = 5;
 
-    protected lines: Line[] = [];
 
     private _springMaps = new Set();
-
+    @property(Prefab)
+    public linePrefab
+    protected lines: Node[] = [];
+    static tempVec3 = new Vec3();
+    @property(Node)
+    normalCellContainer: Node;
     start() {
-
+        
     }
 
     update(deltaTime: number) {
@@ -52,11 +56,14 @@ export class TestSpring extends Component {
         for (let i = springs.length - 1; i >= 0; i -= 2) {
             const rigidBodyA = springs[i];
             const rigidBodyB = springs[i - 1];
-            this.lines[i] ??= this.addComponent(Line);
-            const curveRange = new CurveRange();
-            curveRange.constant = 0.2
-            this.lines[i].width = curveRange;
-            (this.lines[i].positions as Vec3[]) = [rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition];
+            const line: Node = this.lines[i] ??= instantiate(this.linePrefab);
+            this.normalCellContainer.addChild(line);
+            line.setWorldPosition(Vec3.add(TestSpring.tempVec3, rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition).multiplyScalar(50).add3f(240, 0, 0));
+            const sub = Vec3.subtract(TestSpring.tempVec3, rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition).clone().normalize();
+            line.getComponent(UITransform).setContentSize(Vec3.len(Vec3.subtract(TestSpring.tempVec3, rigidBodyA.node.worldPosition, rigidBodyB.node.worldPosition)) * 20, 4);
+            line.eulerAngles = new Vec3(line.eulerAngles.x, line.eulerAngles.y, Math.atan2(sub.y, sub.x) * (180 / Math.PI));
+            //@ts-expect-error
+            window.aaa = line
         }
         this.springs.map(item => item.node.worldPosition);
 
@@ -81,11 +88,9 @@ export class TestSpring extends Component {
                 js.array.fastRemoveAt(springs, i);
                 js.array.fastRemoveAt(springs, i - 1);
                 if (this.lines[i]) {
-                    this.lines[i].enabled = false;
-                    this.lines[i].destroy()
-
+                    this.lines[i].removeFromParent()
+                    js.array.fastRemoveAt(this.lines, i);
                 }
-                js.array.fastRemoveAt(this.lines, i);
             }
         }
 
