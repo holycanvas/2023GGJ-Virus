@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, RigidBody, Vec3, math, UITransform, Animation, Sprite } from 'cc';
-import { Ball } from './Ball';
+import { Ball, BallType } from './Ball';
 const { ccclass, property, requireComponent } = _decorator;
 
 @ccclass('BaseAI')
@@ -19,7 +19,11 @@ export class BaseAI extends Ball {
         this._uiTransform = this.getComponent(UITransform);
         this._originWidth = this._uiTransform.width;
         this._originHeight = this._uiTransform.height;
-        this.scheduleOnce(() => this.animation?.play(), math.randomRange(0, 10));
+        this.scheduleOnce(() => {
+            if (this._ballType === BallType.normal) {
+                this.animation?.play()   
+            }
+        }, math.randomRange(0, 10));
 
         this.scheduleOnce(() => this.emotion?.play(), math.randomRange(0, 10));
     }
