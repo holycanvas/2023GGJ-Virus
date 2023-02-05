@@ -1,5 +1,4 @@
 import { _decorator, Component, Node, Prefab, instantiate, find, Vec3, Vec2, CCInteger, Material, RigidBody, js, CCFloat } from 'cc';
-import { BorderController } from './BorderController';
 import { Controller } from './controller';
 import { TestSpring } from './TestSpring';
 import { UIManager } from './UIManager';
