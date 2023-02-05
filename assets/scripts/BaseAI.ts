@@ -21,6 +21,7 @@ export class BaseAI extends Ball {
 
     update(deltaTime: number) {
         this._rigidBody.getLinearVelocity(this._velocity);
+        
         const length = this._velocity.length();
         if (length > 10) {
             this._uiTransform.width = this._originWidth * (0.5 + 5 / length);

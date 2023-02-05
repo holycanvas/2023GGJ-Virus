@@ -17,7 +17,8 @@ export class DefenderAI extends BaseAI {
     /** 追击的阈值，超过这个阈值将发起一次进攻 */
     chaseThreshold = 100;
     @property
-    chaseSpeed = 100;
+    chaseSpeed = 10;
+    maxChaseSpeed = 1000;
     @property
     massThreshold = 10;
     private innerAcceleration = 10;
@@ -38,7 +39,10 @@ export class DefenderAI extends BaseAI {
     update(deltaTime: number) {
         if(this.needCure()){
             //需要尽快修复，开启威力增强模式。
-            this.chaseSpeed+=this.innerAcceleration;
+            if(this.chaseSpeed<this.maxChaseSpeed){
+                this.chaseSpeed+=this.innerAcceleration;
+            }
+            
             if(this._rigidBody.mass < this.massThreshold){
                 this._rigidBody.mass+=this.innerMassAcc;
             }
