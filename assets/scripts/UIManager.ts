@@ -35,12 +35,11 @@ export class UIManager extends Component {
 
     update(deltaTime: number) {
         this.score = LevelManager.instance.affectedNum * 100 / LevelManager.instance.normalCellNum;
-        if(this.center.active){
-            return;
+        this.scores[0].string = this.score.toString();
+        if(!this.center.active){
+            this.scores[1].string = this.score.toString();
         }
-        for (let i = 0; i < this.scores.length; i++) {
-            this.scores[i].string = this.score.toString();
-        }
+        
     }
 
     onRestart() {

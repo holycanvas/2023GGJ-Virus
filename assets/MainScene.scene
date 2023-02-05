@@ -36,11 +36,11 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 50
+      "__id__": 47
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 69
+      "__id__": 66
     },
     "_id": "55efb22d-7248-4c55-82e7-4822ca870057"
   },
@@ -823,78 +823,30 @@
     "__type__": "cc.PrefabInstance",
     "fileId": "8bL4NleRpJ5L6uHYUnKhUs",
     "mountedChildren": [],
-    "mountedComponents": [
+    "mountedComponents": [],
+    "propertyOverrides": [
       {
         "__id__": 40
-      }
-    ],
-    "propertyOverrides": [
+      },
+      {
+        "__id__": 42
+      },
       {
         "__id__": 43
       },
       {
+        "__id__": 44
+      },
+      {
         "__id__": 45
-      },
-      {
-        "__id__": 46
-      },
-      {
-        "__id__": 47
-      },
-      {
-        "__id__": 48
       }
     ],
     "removedComponents": []
   },
   {
-    "__type__": "cc.MountedComponentsInfo",
-    "targetInfo": {
-      "__id__": 41
-    },
-    "components": [
-      {
-        "__id__": 42
-      }
-    ]
-  },
-  {
-    "__type__": "cc.TargetInfo",
-    "localID": [
-      "8aKNmIn8RFZI2ry5EP1zi+"
-    ]
-  },
-  {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {
-      "mountedRoot": {
-        "__id__": 37
-      }
-    },
-    "node": {
-      "__id__": 37
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "playOnLoad": false,
-    "_clips": [
-      {
-        "__uuid__": "7ba4b453-ecb5-4b91-8967-d3c649432278",
-        "__expectedType__": "cc.AnimationClip"
-      }
-    ],
-    "_defaultClip": {
-      "__uuid__": "7ba4b453-ecb5-4b91-8967-d3c649432278",
-      "__expectedType__": "cc.AnimationClip"
-    },
-    "_id": "04LEGdt6hO/pFMQe5NynvD"
-  },
-  {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 44
+      "__id__": 41
     },
     "propertyPath": [
       "_name"
@@ -910,7 +862,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 44
+      "__id__": 41
     },
     "propertyPath": [
       "_lpos"
@@ -925,7 +877,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 44
+      "__id__": 41
     },
     "propertyPath": [
       "_lrot"
@@ -941,7 +893,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 44
+      "__id__": 41
     },
     "propertyPath": [
       "_euler"
@@ -956,7 +908,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 49
+      "__id__": 46
     },
     "propertyPath": [
       "_contentSize"
@@ -978,6 +930,9 @@
     "fileId": "55efb22d-7248-4c55-82e7-4822ca870057",
     "targetOverrides": [
       {
+        "__id__": 48
+      },
+      {
         "__id__": 51
       },
       {
@@ -991,9 +946,6 @@
       },
       {
         "__id__": 63
-      },
-      {
-        "__id__": 66
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -1014,7 +966,7 @@
       "__id__": 37
     },
     "sourceInfo": {
-      "__id__": 52
+      "__id__": 49
     },
     "propertyPath": [
       "camera"
@@ -1023,7 +975,7 @@
       "__id__": 37
     },
     "targetInfo": {
-      "__id__": 53
+      "__id__": 50
     }
   },
   {
@@ -1044,7 +996,7 @@
       "__id__": 24
     },
     "sourceInfo": {
-      "__id__": 55
+      "__id__": 52
     },
     "propertyPath": [
       "virus"
@@ -1053,7 +1005,7 @@
       "__id__": 11
     },
     "targetInfo": {
-      "__id__": 56
+      "__id__": 53
     }
   },
   {
@@ -1074,7 +1026,7 @@
       "__id__": 11
     },
     "sourceInfo": {
-      "__id__": 58
+      "__id__": 55
     },
     "propertyPath": [
       "indicator"
@@ -1083,7 +1035,7 @@
       "__id__": 11
     },
     "targetInfo": {
-      "__id__": 59
+      "__id__": 56
     }
   },
   {
@@ -1104,7 +1056,7 @@
       "__id__": 11
     },
     "sourceInfo": {
-      "__id__": 61
+      "__id__": 58
     },
     "propertyPath": [
       "launchAnimation"
@@ -1113,7 +1065,7 @@
       "__id__": 11
     },
     "targetInfo": {
-      "__id__": 62
+      "__id__": 59
     }
   },
   {
@@ -1134,7 +1086,7 @@
       "__id__": 11
     },
     "sourceInfo": {
-      "__id__": 64
+      "__id__": 61
     },
     "propertyPath": [
       "absorbAnimation"
@@ -1143,7 +1095,7 @@
       "__id__": 11
     },
     "targetInfo": {
-      "__id__": 65
+      "__id__": 62
     }
   },
   {
@@ -1164,7 +1116,7 @@
       "__id__": 11
     },
     "sourceInfo": {
-      "__id__": 67
+      "__id__": 64
     },
     "propertyPath": [
       "idleAnimation"
@@ -1173,7 +1125,7 @@
       "__id__": 11
     },
     "targetInfo": {
-      "__id__": 68
+      "__id__": 65
     }
   },
   {
@@ -1191,19 +1143,19 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 70
+      "__id__": 67
     },
     "shadows": {
-      "__id__": 71
+      "__id__": 68
     },
     "_skybox": {
-      "__id__": 72
+      "__id__": 69
     },
     "fog": {
-      "__id__": 73
+      "__id__": 70
     },
     "octree": {
-      "__id__": 74
+      "__id__": 71
     }
   },
   {

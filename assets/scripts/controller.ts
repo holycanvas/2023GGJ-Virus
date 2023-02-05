@@ -38,7 +38,7 @@ export class Controller extends Component {
     public operationStrength = 100;
     private _isOperating: boolean = false;
     public set isOperating(value: boolean) {
-        if(this._isOperating === value){
+        if (this._isOperating === value) {
             return;
         }
         this._isOperating = value;
@@ -47,7 +47,7 @@ export class Controller extends Component {
         }
         if (value && this._ball._ballType === BallType.virus) {
             this.currentAnimation.play();
-            if(this._isOperationPull){
+            if (this._isOperationPull) {
                 AudioController.instance.playAbsorb();
             }
         } else {
@@ -66,7 +66,7 @@ export class Controller extends Component {
     public absorbAnimation: Animation | null = null;
     @property(Animation)
     public idleAnimation: Animation | null = null;
-    
+
     @property(CCFloat)
     public pushStrength = 5;
     @property(CCFloat)
@@ -78,9 +78,12 @@ export class Controller extends Component {
     private _accumulateTime = 0;
     @property(Prefab)
     public particleSystem: Prefab | null = null;
-    
-    public static instance:Controller;
-    onLoad(){
+
+    public static instance: Controller;
+    public get isDead():boolean {
+        return this._ball._ballType !== BallType.virus;
+    };
+    onLoad() {
         Controller.instance = this;
         this._ball = this.getComponent(Ball);
     }
@@ -95,10 +98,9 @@ export class Controller extends Component {
         this.collider = this.indicator.getComponentInChildren(ConeCollider);
         this.collider.on('onTriggerStay', this.onOperation, this);
     }
-    onDead(){
+    onDead() {
         this.isOperating = false;
         this.idleAnimation?.pause();
-        
         input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.off(Input.EventType.KEY_UP, this.onKeyUp, this);
         input.off(Input.EventType.MOUSE_DOWN, this.onMouseDown, this);
@@ -140,7 +142,7 @@ export class Controller extends Component {
             AudioController.instance.playShoot();
             this._accumulateTime = 0;
             const node = instantiate(this.particleSystem);
-                this.node.addChild(node);
+            this.node.addChild(node);
         }
     }
 
@@ -215,7 +217,7 @@ export class Controller extends Component {
         //     ball._rigidBody.applyImpulse(Vec3.multiplyScalar(direction, direction, this.pushStrength / length));
         //     // AudioController.instance.playShoot();
         // }
-        
+
     }
 
     onMouseMove(event: EventMouse) {
