@@ -149,8 +149,15 @@ export class Controller extends Component {
 
         if (this.speedBonusTime > 0) {
             this.speed = 3 * this._originSpeed;
+            if(!this._ball.isPlayingMotionStreak){
+                this._ball.isPlayingMotionStreak = true;
+                this._ball.motionStreakAnimation?.play();
+            }
         } else {
             this.speed = this._originSpeed;
+            this._ball.motionStreakAnimation?.pause();
+            this._ball.motionStreakAnimation.getComponent(Sprite).spriteFrame = null;
+            this._ball.isPlayingMotionStreak = false;
         }
 
         if (this.invincibleBonusTime > 0) {

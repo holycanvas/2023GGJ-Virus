@@ -15,13 +15,18 @@ export enum BallType {
 @requireComponent(Collider)
 export class Ball extends Component {
     static balls: Ball[] = [];
+    protected _velocity = new Vec3();
+
     protected _speed: Vec3 = new Vec3();
     @property(Animation)
     public animation?: Animation;
+    @property(Animation)
+    motionStreakAnimation: Animation;
     @property(Prefab)
     smog: Prefab;
     @property
     _ballType: BallType = BallType.normal;
+    public isPlayingMotionStreak = false;
     @property({ type: Enum(BallType) })
     set ballType(value: BallType) {
         if (this._ballType !== value) {
@@ -94,5 +99,11 @@ export class Ball extends Component {
     }
     onCollisionExit(event: ICollisionEvent) {
 
+    }
+    update(deltaTime: number) {
+        this._rigidBody.getLinearVelocity(this._velocity);
+        if(this.motionStreakAnimation){
+            this.motionStreakAnimation.node.eulerAngles = new Vec3(this.node.eulerAngles.x, this.node.eulerAngles.y, Math.atan2(this._velocity.y, this._velocity.x) * (180 / Math.PI));
+        }
     }
 }
