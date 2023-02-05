@@ -638,6 +638,13 @@
     "max": 2,
     "min": 1,
     "maxDistance": 5,
+    "linePrefab": {
+      "__uuid__": "9ee5f059-03f2-4366-b2a5-9851e1446119",
+      "__expectedType__": "cc.Prefab"
+    },
+    "normalCellContainer": {
+      "__id__": 12
+    },
     "_id": "aePN3pdg1KbJmZwd1uAAiI"
   },
   {
