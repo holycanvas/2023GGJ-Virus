@@ -47,7 +47,11 @@ export class Controller extends Component {
         }
         if (value && this._ball._ballType === BallType.virus) {
             this.currentAnimation.play();
+            if(this._isOperationPull){
+                AudioController.instance.playAbsorb();
+            }
         } else {
+            AudioController.instance.stopAbsorb();
             this.launchAnimation.pause();
             this.launchAnimation.getComponent(Sprite)!.spriteFrame = null;
             this.absorbAnimation.pause();
@@ -187,7 +191,7 @@ export class Controller extends Component {
             const length = Math.max(direction.length(), 1);
             direction.normalize();
             event.otherCollider.getComponent(RigidBody).applyForce(direction.multiplyScalar(this.operationStrength / length));
-            AudioController.instance.playAbsorb();
+            
         }
     }
 

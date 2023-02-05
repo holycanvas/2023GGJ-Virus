@@ -1,4 +1,5 @@
 import { _decorator, Component, Node, Prefab, instantiate, find, Vec3, Vec2, CCInteger, Material, RigidBody, js } from 'cc';
+import { BorderController } from './BorderController';
 import { TestSpring } from './TestSpring';
 import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;
@@ -40,8 +41,37 @@ export class LevelManager extends Component {
     public uiManager: UIManager | null = null;
     public normalCellContainer;
     public affectedNum:number = 0;
+
+
+    @property(Prefab)
+    upborder: Prefab;
+    @property(Prefab)
+    bottomborder: Prefab;
+    @property(Prefab)
+    leftborder: Prefab;
+    @property(Prefab)
+    rightborder: Prefab;
+
+    generateBorders(){
+        const scene = this.node.scene;
+        const up = instantiate(this.upborder);
+        scene.addChild(up);
+        up.setPosition(0, this.normalCellRange.y/2, 0);
+        const bottom = instantiate(this.bottomborder);
+        scene.addChild(bottom);
+        bottom.setPosition(0, -this.normalCellRange.y/2, 0);
+        const left = instantiate(this.leftborder);
+        scene.addChild(left);
+        left.setPosition(-this.normalCellRange.x/2, 0, 0);
+        const right = instantiate(this.rightborder);
+        scene.addChild(right);
+        right.setPosition(this.normalCellRange.x/2, 0, 0);  
+    }
+
+
     onLoad () {
         LevelManager.instance = this;
+        this.generateBorders();
         this.normalCellContainer = find('NormalCellContainer');
         this.springManager = this.getComponent(TestSpring);
         this.uiManager = find('Canvas').getComponent(UIManager);
@@ -73,5 +103,10 @@ export class LevelManager extends Component {
     update(deltaTime: number) {
 
     }
+
+
+
+
+
 }
 
