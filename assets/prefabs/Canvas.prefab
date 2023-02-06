@@ -1545,7 +1545,7 @@
       "r": 255,
       "g": 255,
       "b": 255,
-      "a": 100
+      "a": 255
     },
     "_spriteFrame": null,
     "_type": 0,
@@ -2304,7 +2304,6 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "8aKNmIn8RFZI2ry5EP1zi+",
-    "targetOverrides": []
+    "fileId": "8aKNmIn8RFZI2ry5EP1zi+"
   }
 ]
