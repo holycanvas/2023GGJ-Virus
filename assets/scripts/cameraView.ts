@@ -20,7 +20,7 @@ export class cameraView extends Component {
         });
         
         this.camera.targetTexture = renderTex;
-        this.sprite.color.set(this.sprite.color.r, this.sprite.color.g, this.sprite.color.b , 100);
+        //this.sprite.color.set(this.sprite.color.r, this.sprite.color.g, this.sprite.color.b , 100);
         sp.texture = renderTex;
         sp.flipUVY = true;
         this.sprite.spriteFrame = sp;
