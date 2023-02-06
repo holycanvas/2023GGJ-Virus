@@ -120,6 +120,11 @@
       "__uuid__": "5aa6e6ca-1eb5-4503-b45a-f14586a23631",
       "__expectedType__": "cc.Prefab"
     },
+    "bonusPrefab": {
+      "__uuid__": "c751d1ca-0d96-4a1f-86ea-2913dc62436e",
+      "__expectedType__": "cc.Prefab"
+    },
+    "bonusGenerateInterval": 5,
     "_id": ""
   },
   {
